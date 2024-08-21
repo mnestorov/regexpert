@@ -1,0 +1,964 @@
+{
+  "patterns": {
+    "phoneNumbers": {
+      "Albania": {
+        "pattern": "^\\+355[2-9]\\d{7,8}$",
+        "explanation": {
+          "^\\+355": "Matches the country code for Albania (+355).",
+          "[2-9]": "Ensures that the first digit after the country code is between 2 and 9.",
+          "\\d{7,8}$": "Matches 7 to 8 digits following the initial digit, representing the local phone number."
+        }
+      },
+      "Andorra": {
+        "pattern": "^\\+376[0-9]{6}$",
+        "explanation": {
+          "^\\+376": "Matches the country code for Andorra (+376).",
+          "[0-9]{6}$": "Matches exactly 6 digits following the country code, representing the local phone number."
+        }
+      },
+      "Austria": {
+        "pattern": "^\\+43[1-9][0-9]{3,12}$",
+        "explanation": {
+          "^\\+43": "Matches the country code for Austria (+43).",
+          "[1-9]": "Ensures that the first digit after the country code is not zero.",
+          "[0-9]{3,12}$": "Matches 3 to 12 digits following the initial digit, representing the local phone number."
+        }
+      },
+      "Belarus": {
+        "pattern": "^\\+375[2-9][0-9]{7}$",
+        "explanation": {
+          "^\\+375": "Matches the country code for Belarus (+375).",
+          "[2-9]": "Ensures that the first digit after the country code is between 2 and 9.",
+          "[0-9]{7}$": "Matches exactly 7 digits following the initial digit, representing the local phone number."
+        }
+      },
+      "Belgium": {
+        "pattern": "^\\+32[1-9][0-9]{7,8}$",
+        "explanation": {
+          "^\\+32": "Matches the country code for Belgium (+32).",
+          "[1-9]": "Ensures that the first digit after the country code is not zero.",
+          "[0-9]{7,8}$": "Matches 7 to 8 digits following the initial digit, representing the local phone number."
+        }
+      },
+      "Bosnia and Herzegovina": {
+        "pattern": "^\\+387[6][0-9]{7}$",
+        "explanation": {
+          "^\\+387": "Matches the country code for Bosnia and Herzegovina (+387).",
+          "[6]": "Matches the initial digit (6) for mobile numbers.",
+          "[0-9]{7}$": "Matches exactly 7 digits following the initial digit, representing the local phone number."
+        }
+      },
+      "Bulgaria": {
+        "pattern": "^\\+359[1-9][0-9]{7,8}$",
+        "explanation": {
+          "^\\+359": "Matches the country code for Bulgaria (+359).",
+          "[1-9]": "Ensures that the first digit after the country code is not zero.",
+          "[0-9]{7,8}$": "Matches 7 to 8 digits following the initial digit, representing the local phone number."
+        }
+      },
+      "Croatia": {
+        "pattern": "^\\+385[1-9][0-9]{7,8}$",
+        "explanation": {
+          "^\\+385": "Matches the country code for Croatia (+385).",
+          "[1-9]": "Ensures that the first digit after the country code is not zero.",
+          "[0-9]{7,8}$": "Matches 7 to 8 digits following the initial digit, representing the local phone number."
+        }
+      },
+      "Cyprus": {
+        "pattern": "^\\+357[2-9][0-9]{6,7}$",
+        "explanation": {
+          "^\\+357": "Matches the country code for Cyprus (+357).",
+          "[2-9]": "Ensures that the first digit after the country code is between 2 and 9.",
+          "[0-9]{6,7}$": "Matches 6 to 7 digits following the initial digit, representing the local phone number."
+        }
+      },
+      "Czech Republic": {
+        "pattern": "^\\+420[1-9][0-9]{8}$",
+        "explanation": {
+          "^\\+420": "Matches the country code for the Czech Republic (+420).",
+          "[1-9]": "Ensures that the first digit after the country code is not zero.",
+          "[0-9]{8}$": "Matches exactly 8 digits following the initial digit, representing the local phone number."
+        }
+      },
+      "Denmark": {
+        "pattern": "^\\+45[2-9][0-9]{7}$",
+        "explanation": {
+          "^\\+45": "Matches the country code for Denmark (+45).",
+          "[2-9]": "Ensures that the first digit after the country code is between 2 and 9.",
+          "[0-9]{7}$": "Matches exactly 7 digits following the initial digit, representing the local phone number."
+        }
+      },
+      "Estonia": {
+        "pattern": "^\\+372[5-9][0-9]{6,7}$",
+        "explanation": {
+          "^\\+372": "Matches the country code for Estonia (+372).",
+          "[5-9]": "Ensures that the first digit after the country code is between 5 and 9.",
+          "[0-9]{6,7}$": "Matches 6 to 7 digits following the initial digit, representing the local phone number."
+        }
+      },
+      "Finland": {
+        "pattern": "^\\+358[1-9][0-9]{4,11}$",
+        "explanation": {
+          "^\\+358": "Matches the country code for Finland (+358).",
+          "[1-9]": "Ensures that the first digit after the country code is not zero.",
+          "[0-9]{4,11}$": "Matches 4 to 11 digits following the initial digit, representing the local phone number."
+        }
+      },
+      "France": {
+        "pattern": "^\\+33[1-9][0-9]{8}$",
+        "explanation": {
+          "^\\+33": "Matches the country code for France (+33).",
+          "[1-9]": "Ensures that the first digit after the country code is not zero.",
+          "[0-9]{8}$": "Matches exactly 8 digits following the initial digit, representing the local phone number."
+        }
+      },
+      "Germany": {
+        "pattern": "^\\+49[1-9][0-9]{1,14}$",
+        "explanation": {
+          "^\\+49": "Matches the country code for Germany (+49).",
+          "[1-9]": "Ensures that the first digit after the country code is not zero.",
+          "[0-9]{1,14}$": "Matches 1 to 14 digits following the initial digit, representing the local phone number."
+        }
+      },
+      "Greece": {
+        "pattern": "^\\+30[2-9][0-9]{9}$",
+        "explanation": {
+          "^\\+30": "Matches the country code for Greece (+30).",
+          "[2-9]": "Ensures that the first digit after the country code is between 2 and 9.",
+          "[0-9]{9}$": "Matches exactly 9 digits following the initial digit, representing the local phone number."
+        }
+      },
+      "Hungary": {
+        "pattern": "^\\+36[1-9][0-9]{8}$",
+        "explanation": {
+          "^\\+36": "Matches the country code for Hungary (+36).",
+          "[1-9]": "Ensures that the first digit after the country code is between 1 and 9.",
+          "[0-9]{8}$": "Matches exactly 8 digits following the initial digit, representing the local phone number."
+        }
+      },
+      "Ireland": {
+        "pattern": "^\\+353[1-9][0-9]{6,9}$",
+        "explanation": {
+          "^\\+353": "Matches the country code for Ireland (+353).",
+          "[1-9]": "Ensures that the first digit after the country code is between 1 and 9.",
+          "[0-9]{6,9}$": "Matches between 6 and 9 digits following the initial digit, representing the local phone number."
+        }
+      },
+      "Italy": {
+        "pattern": "^\\+39[0-9]{6,12}$",
+        "explanation": {
+          "^\\+39": "Matches the country code for Italy (+39).",
+          "[0-9]{6,12}$": "Matches 6 to 12 digits representing the local phone number."
+        }
+      },
+      "Kosovo": {
+        "pattern": "^\\+383[1-9][0-9]{6,7}$",
+        "explanation": {
+          "^\\+383": "Matches the country code for Kosovo (+383).",
+          "[1-9]": "Ensures that the first digit after the country code is between 1 and 9.",
+          "[0-9]{6,7}$": "Matches 6 to 7 digits following the initial digit, representing the local phone number."
+        }
+      },
+      "Latvia": {
+        "pattern": "^\\+371[2-9][0-9]{7}$",
+        "explanation": {
+          "^\\+371": "Matches the country code for Latvia (+371).",
+          "[2-9]": "Ensures that the first digit after the country code is between 2 and 9.",
+          "[0-9]{7}$": "Matches exactly 7 digits following the initial digit, representing the local phone number."
+        }
+      },
+      "Liechtenstein": {
+        "pattern": "^\\+423[0-9]{3,12}$",
+        "explanation": {
+          "^\\+423": "Matches the country code for Liechtenstein (+423).",
+          "[0-9]{3,12}$": "Matches 3 to 12 digits following the country code, representing the local phone number."
+        }
+      },
+      "Lithuania": {
+        "pattern": "^\\+370[6-9][0-9]{7}$",
+        "explanation": {
+          "^\\+370": "Matches the country code for Lithuania (+370).",
+          "[6-9]": "Ensures that the first digit after the country code is between 6 and 9.",
+          "[0-9]{7}$": "Matches exactly 7 digits following the initial digit, representing the local phone number."
+        }
+      },
+      "Luxembourg": {
+        "pattern": "^\\+352[0-9]{3,11}$",
+        "explanation": {
+          "^\\+352": "Matches the country code for Luxembourg (+352).",
+          "[0-9]{3,11}$": "Matches 3 to 11 digits following the country code, representing the local phone number."
+        }
+      },
+      "Malta": {
+        "pattern": "^\\+356[0-9]{8}$",
+        "explanation": {
+          "^\\+356": "Matches the country code for Malta (+356).",
+          "[0-9]{8}$": "Matches exactly 8 digits following the country code, representing the local phone number."
+        }
+      },
+      "Moldova": {
+        "pattern": "^\\+373[0-9]{8}$",
+        "explanation": {
+          "^\\+373": "Matches the country code for Moldova (+373).",
+          "[0-9]{8}$": "Matches exactly 8 digits following the country code, representing the local phone number."
+        }
+      },
+      "Montenegro": {
+        "pattern": "^\\+382[6-9][0-9]{6,7}$",
+        "explanation": {
+          "^\\+382": "Matches the country code for Montenegro (+382).",
+          "[6-9]": "Ensures that the first digit after the country code is between 6 and 9.",
+          "[0-9]{6,7}$": "Matches 6 to 7 digits following the initial digit, representing the local phone number."
+        }
+      },
+      "Monaco": {
+        "pattern": "^\\+377[0-9]{8,9}$",
+        "explanation": {
+          "^\\+377": "Matches the country code for Monaco (+377).",
+          "[0-9]{8,9}$": "Matches 8 to 9 digits following the country code, representing the local phone number."
+        }
+      },
+      "Netherlands": {
+        "pattern": "^\\+31[0-9]{9}$",
+        "explanation": {
+          "^\\+31": "Matches the country code for the Netherlands (+31).",
+          "[0-9]{9}$": "Matches exactly 9 digits following the country code, representing the local phone number."
+        }
+      },
+      "North Macedonia": {
+        "pattern": "^\\+389[2-9][0-9]{6,7}$",
+        "explanation": {
+          "^\\+389": "Matches the country code for North Macedonia (+389).",
+          "[2-9]": "Ensures that the first digit after the country code is between 2 and 9.",
+          "[0-9]{6,7}$": "Matches 6 to 7 digits following the initial digit, representing the local phone number."
+        }
+      },
+      "Norway": {
+        "pattern": "^\\+47[2-9][0-9]{7,8}$",
+        "explanation": {
+          "^\\+47": "Matches the country code for Norway (+47).",
+          "[2-9]": "Ensures that the first digit after the country code is between 2 and 9.",
+          "[0-9]{7,8}$": "Matches 7 to 8 digits following the initial digit, representing the local phone number."
+        }
+      },
+      "Poland": {
+        "pattern": "^\\+48[0-9]{9}$",
+        "explanation": {
+          "^\\+48": "Matches the country code for Poland (+48).",
+          "[0-9]{9}$": "Matches exactly 9 digits following the country code, representing the local phone number."
+        }
+      },
+      "Portugal": {
+        "pattern": "^\\+351[1-9][0-9]{8}$",
+        "explanation": {
+          "^\\+351": "Matches the country code for Portugal (+351).",
+          "[1-9]": "Ensures that the first digit after the country code is not zero.",
+          "[0-9]{8}$": "Matches exactly 8 digits following the initial digit, representing the local phone number."
+        }
+      },
+      "Romania": {
+        "pattern": "^\\+40[1-9][0-9]{8,9}$",
+        "explanation": {
+          "^\\+40": "Matches the country code for Romania (+40).",
+          "[1-9]": "Ensures that the first digit after the country code is not zero.",
+          "[0-9]{8,9}$": "Matches 8 to 9 digits following the initial digit, representing the local phone number."
+        }
+      },
+      "San Marino": {
+        "pattern": "^\\+378[0-9]{6,10}$",
+        "explanation": {
+          "^\\+378": "Matches the country code for San Marino (+378).",
+          "[0-9]{6,10}$": "Matches 6 to 10 digits following the country code, representing the local phone number."
+        }
+      },
+      "Serbia": {
+        "pattern": "^\\+381[6-9][0-9]{6,8}$",
+        "explanation": {
+          "^\\+381": "Matches the country code for Serbia (+381).",
+          "[6-9]": "Ensures that the first digit after the country code is between 6 and 9.",
+          "[0-9]{6,8}$": "Matches 6 to 8 digits following the initial digit, representing the local phone number."
+        }
+      },
+      "Slovakia": {
+        "pattern": "^\\+421[1-9][0-9]{8}$",
+        "explanation": {
+          "^\\+421": "Matches the country code for Slovakia (+421).",
+          "[1-9]": "Ensures that the first digit after the country code is not zero.",
+          "[0-9]{8}$": "Matches exactly 8 digits following the initial digit, representing the local phone number."
+        }
+      },
+      "Slovenia": {
+        "pattern": "^\\+386[1-9][0-9]{6,7}$",
+        "explanation": {
+          "^\\+386": "Matches the country code for Slovenia (+386).",
+          "[1-9]": "Ensures that the first digit after the country code is not zero.",
+          "[0-9]{6,7}$": "Matches 6 to 7 digits following the initial digit, representing the local phone number."
+        }
+      },
+      "Spain": {
+        "pattern": "^\\+34[6-9][0-9]{8}$",
+        "explanation": {
+          "^\\+34": "Matches the country code for Spain (+34).",
+          "[6-9]": "Ensures that the first digit after the country code is between 6 and 9.",
+          "[0-9]{8}$": "Matches exactly 8 digits following the initial digit, representing the local phone number."
+        }
+      },
+      "Sweden": {
+        "pattern": "^\\+46[0-9]{7,13}$",
+        "explanation": {
+          "^\\+46": "Matches the country code for Sweden (+46).",
+          "[0-9]{7,13}$": "Matches 7 to 13 digits following the country code, representing the local phone number."
+        }
+      },
+      "Switzerland": {
+        "pattern": "^\\+41[1-9][0-9]{8}$",
+        "explanation": {
+          "^\\+41": "Matches the country code for Switzerland (+41).",
+          "[1-9]": "Ensures that the first digit after the country code is not zero.",
+          "[0-9]{8}$": "Matches exactly 8 digits following the initial digit, representing the local phone number."
+        }
+      },
+      "Ukraine": {
+        "pattern": "^\\+380[3-9][0-9]{8}$",
+        "explanation": {
+          "^\\+380": "Matches the country code for Ukraine (+380).",
+          "[3-9]": "Ensures that the first digit after the country code is between 3 and 9.",
+          "[0-9]{8}$": "Matches exactly 8 digits following the initial digit, representing the local phone number."
+        }
+      },
+      "United Kingdom": {
+        "pattern": "^\\+44[1-9][0-9]{9,10}$",
+        "explanation": {
+          "^\\+44": "Matches the country code for the United Kingdom (+44).",
+          "[1-9]": "Ensures that the first digit after the country code is not zero.",
+          "[0-9]{9,10}$": "Matches 9 to 10 digits following the initial digit, representing the local phone number."
+        }
+      }
+    },
+    "postalCodes": {
+      "Albania": {
+        "pattern": "^\\d{4}$",
+        "explanation": {
+            "^\\d{4}$": "Matches exactly 4 digits representing the postal code."
+        }
+      },
+      "Andorra": {
+        "pattern": "^AD\\d{3}$",
+        "explanation": {
+          "^AD": "Matches the prefix 'AD' for Andorra.",
+          "\\d{3}": "Matches exactly 3 digits after the prefix."
+        }
+      },
+      "Austria": {
+        "pattern": "^\\d{4}$",
+        "explanation": {
+          "\\d{4}": "Matches exactly 4 digits representing the postal code."
+        }
+      },
+      "Belarus": {
+        "pattern": "^\\d{6}$",
+        "explanation": {
+          "^\\d{6}$": "Matches exactly 6 digits, representing the postal code."
+        }
+      },
+      "Belgium": {
+        "pattern": "^\\d{4}$",
+        "explanation": {
+          "^\\d{4}$": "Matches exactly 4 digits, representing the postal code."
+        }
+      },
+      "Bosnia and Herzegovina": {
+        "pattern": "^\\d{5}$",
+        "explanation": {
+          "^\\d{5}$": "Matches exactly 5 digits, representing the postal code."
+        }
+      },
+      "Bulgaria": {
+        "pattern": "^\\d{4}$",
+        "explanation": {
+          "^\\d{4}$": "Matches exactly 4 digits, representing the postal code."
+        }
+      },
+      "Croatia": {
+        "pattern": "^\\d{5}$",
+        "explanation": {
+          "^\\d{5}$": "Matches exactly 5 digits, representing the postal code."
+        }
+      },
+      "Cyprus": {
+        "pattern": "^\\d{4}$",
+        "explanation": {
+          "^\\d{4}$": "Matches exactly 4 digits, representing the postal code."
+        }
+      },
+      "Czech Republic": {
+        "pattern": "^\\d{3}\\s?\\d{2}$",
+        "explanation": {
+          "^\\d{3}": "Matches the first 3 digits of the postal code.",
+          "\\s?": "Optionally matches a space between the first 3 digits and the last 2 digits.",
+          "\\d{2}$": "Matches the last 2 digits of the postal code."
+        }
+      },
+      "Denmark": {
+        "pattern": "^\\d{4}$",
+        "explanation": {
+          "^\\d{4}$": "Matches exactly 4 digits, representing the postal code."
+        }
+      },
+      "Estonia": {
+        "pattern": "^\\d{5}$",
+        "explanation": {
+          "^\\d{5}$": "Matches exactly 5 digits, representing the postal code."
+        }
+      },
+      "Finland": {
+        "pattern": "^\\d{5}$",
+        "explanation": {
+          "^\\d{5}$": "Matches exactly 5 digits, representing the postal code."
+        }
+      },
+      "France": {
+        "pattern": "^\\d{5}$",
+        "explanation": {
+          "^\\d{5}$": "Matches exactly 5 digits, representing the postal code."
+        }
+      },
+      "Germany": {
+        "pattern": "^\\d{5}$",
+        "explanation": {
+          "^\\d{5}$": "Matches exactly 5 digits, representing the postal code."
+        }
+      },
+      "Greece": {
+        "pattern": "^\\d{3}\\s?\\d{2}$",
+        "explanation": {
+          "^\\d{3}":"Matches the first 3 digits of the postal code.",
+          "\\s?": "Optionally matches a space.",
+          "\\d{2}$": "Matches the final 2 digits of the postal code."
+        }
+      },
+      "Hungary": {
+        "pattern": "^\\d{4}$",
+        "explanation": {
+          "^\\d{4}$": "Matches 4 digits, representing the postal code."
+        }
+      },
+      "Ireland": {
+        "pattern": "^(D6W|[A-Z]{1}[0-9]{1,2}|[A-Z]{2}[0-9]{1,2}|[A-Z]{1}[0-9]{1}[A-Z]{1}|[A-Z]{2}[0-9]{1}[A-Z]{1})$",
+        "explanation": {
+          "^D6W": "Matches the specific postal district 'D6W' in Dublin.",
+          "[A-Z]{1}[0-9]{1,2}": "Matches a single letter followed by 1 or 2 digits (e.g., A1 or B12).",
+          "[A-Z]{2}[0-9]{1,2}": "Matches two letters followed by 1 or 2 digits (e.g., AB1 or CD12).",
+          "[A-Z]{1}[0-9]{1}[A-Z]{1}": "Matches a single letter, followed by a digit and another letter (e.g., A1B).",
+          "[A-Z]{2}[0-9]{1}[A-Z]{1}": "Matches two letters, followed by a digit and another letter (e.g., AB1C)."
+        }
+      },
+      "Italy": {
+        "pattern": "^\\d{5}$",
+        "explanation": {
+          "^\\d{5}$": "Matches exactly 5 digits, representing the postal code."
+        }
+      },
+      "Kosovo": {
+        "pattern": "^\\d{5}$",
+        "explanation": {
+          "^\\d{5}$": "Matches exactly 5 digits, representing the postal code."
+        }
+      },
+      "Latvia": {
+        "pattern": "^LV-\\d{4}$",
+        "explanation": {
+          "^LV-": "Matches the prefix 'LV-' for Latvia.",
+          "\\d{4}$": "Matches exactly 4 digits following the prefix."
+        }
+      },
+      "Liechtenstein": {
+        "pattern": "^\\d{4}$",
+        "explanation": {
+          "^\\d{4}$": "Matches exactly 4 digits, representing the postal code."
+        }
+      },
+      "Lithuania": {
+        "pattern": "^LT-\\d{5}$",
+        "explanation": {
+          "^LT-": "Matches the prefix 'LT-' for Lithuania.",
+          "\\d{5}$": "Matches exactly 5 digits following the prefix."
+        }
+      },
+      "Luxembourg": {
+        "pattern": "^\\d{4}$",
+        "explanation": {
+          "^\\d{4}$": "Matches exactly 4 digits, representing the postal code."
+        }
+      },
+      "Malta": {
+        "pattern": "^[A-Z]{3}\\s?\\d{2,4}$",
+        "explanation": {
+          "^[A-Z]{3}": "Matches exactly 3 uppercase letters.",
+          "\\s?": "Optionally matches a space.",
+          "\\d{2,4}$": "Matches 2 to 4 digits representing the postal code."
+        }
+      },
+      "Moldova": {
+        "pattern": "^\\d{4}$",
+        "explanation": {
+          "^\\d{4}$": "Matches exactly 4 digits, representing the postal code."
+        }
+      },
+      "Montenegro": {
+        "pattern": "^\\d{5}$",
+        "explanation": {
+          "^\\d{5}$": "Matches exactly 5 digits, representing the postal code."
+        }
+      },
+      "Monaco": {
+        "pattern": "^980\\d{2}$",
+        "explanation": {
+          "^980": "Matches the prefix '980' for Monaco.",
+          "\\d{2}$": "Matches exactly 2 digits following the prefix."
+        }
+      },
+      "Netherlands": {
+        "pattern": "^[1-9][0-9]{3}\\s?[A-Z]{2}$",
+        "explanation": {
+          "^[1-9][0-9]{3}": "Matches a 4-digit postal code where the first digit is non-zero.",
+          "\\s?": "Optionally matches a space.",
+          "[A-Z]{2}$": "Matches exactly 2 uppercase letters."
+        }
+      },
+      "North Macedonia": {
+        "pattern": "^\\d{4}$",
+        "explanation": {
+          "^\\d{4}$": "Matches exactly 4 digits, representing the postal code."
+        }
+      },
+      "Norway": {
+        "pattern": "^\\d{4}$",
+        "explanation": {
+          "^\\d{4}$": "Matches exactly 4 digits, representing the postal code."
+        }
+      },
+      "Poland": {
+        "pattern": "^\\d{2}-\\d{3}$",
+        "explanation": {
+          "^\\d{2}": "Matches the first 2 digits of the postal code.",
+          "-": "Matches the hyphen separator.",
+          "\\d{3}$": "Matches the last 3 digits of the postal code."
+        }
+      },
+      "Portugal": {
+        "pattern": "^\\d{4}-\\d{3}$",
+        "explanation": {
+          "^\\d{4}": "Matches the first 4 digits of the postal code.",
+          "-": "Matches the hyphen separator.",
+          "\\d{3}$": "Matches the last 3 digits of the postal code."
+        }
+      },
+      "Romania": {
+        "pattern": "^\\d{6}$",
+        "explanation": {
+          "^\\d{6}$": "Matches exactly 6 digits, representing the postal code."
+        }
+      },
+      "San Marino": {
+        "pattern": "^4789\\d$",
+        "explanation": {
+          "^4789": "Matches the prefix '4789' for San Marino.",
+          "\\d$": "Matches exactly 1 digit following the prefix."
+        }
+      },
+      "Serbia": {
+        "pattern": "^\\d{5}$",
+        "explanation": {
+          "^\\d{5}$": "Matches exactly 5 digits, representing the postal code."
+        }
+      },
+      "Slovakia": {
+        "pattern": "^\\d{3}\\s?\\d{2}$",
+        "explanation": {
+          "^\\d{3}": "Matches the first 3 digits of the postal code.",
+          "\\s?": "Optionally matches a space between the first 3 digits and the last 2 digits.",
+          "\\d{2}$": "Matches the last 2 digits of the postal code."
+        }
+      },
+      "Slovenia": {
+        "pattern": "^\\d{4}$",
+        "explanation": {
+          "^\\d{4}$": "Matches exactly 4 digits, representing the postal code."
+        }
+      },
+      "Spain": {
+        "pattern": "^(?:0[1-9]|[1-4]\\d|5[0-2])\\d{3}$",
+        "explanation": {
+          "^(?:0[1-9]|[1-4]\\d|5[0-2])": "Matches the first 2 digits, representing a valid province code.",
+          "\\d{3}$": "Matches the last 3 digits, representing the specific area within the province."
+        }
+      },
+      "Sweden": {
+        "pattern": "^\\d{3}\\s?\\d{2}$",
+        "explanation": {
+          "^\\d{3}": "Matches the first 3 digits of the postal code.",
+          "\\s?": "Optionally matches a space between the first 3 digits and the last 2 digits.",
+          "\\d{2}$": "Matches the last 2 digits of the postal code."
+        }
+      },
+      "Switzerland": {
+        "pattern": "^\\d{4}$",
+        "explanation": {
+          "^\\d{4}$": "Matches exactly 4 digits, representing the postal code."
+        }
+      },
+      "Ukraine": {
+        "pattern": "^\\d{5}$",
+        "explanation": {
+          "^\\d{5}$": "Matches exactly 5 digits, representing the postal code."
+        }
+      },
+      "United Kingdom": {
+        "pattern": "^(GIR ?0AA|[A-Z]{1,2}[0-9]{1,2} ?[0-9][A-Z]{2})$",
+        "explanation": {
+          "^GIR ?0AA": "Matches the special postcode 'GIR 0AA' used by the National Girobank.",
+          "[A-Z]{1,2}[0-9]{1,2}": "Matches 1 or 2 letters followed by 1 or 2 digits.",
+          "?[0-9][A-Z]{2}$": "Optionally matches a space followed by 1 digit and 2 letters."
+        }
+      }
+    },
+    "VATNumbers": {
+      "Albania": {
+        "pattern": "^ALJ\\d{8}[A-Z]$",
+        "explanation": {
+          "^ALJ": "Matches the VAT prefix 'ALJ' for Albania.",
+          "\\d{8}": "Matches exactly 8 digits following the prefix.",
+          "[A-Z]$": "Ensures that the VAT number ends with a capital letter."
+        }
+      },
+      "Andorra": "Not applicable as Andorra does not have a standard VAT number system like EU countries.",
+      "Austria": {
+        "pattern": "^ATU\\d{8}$",
+        "explanation": {
+          "^ATU": "Matches the VAT prefix 'ATU' for Austria.",
+          "\\d{8}$": "Matches exactly 8 digits following the prefix."
+        }
+      },
+      "Belarus": {
+        "pattern": "^BY\\d{9}$",
+        "explanation": {
+          "^BY": "Matches the VAT prefix 'BY' for Belarus.",
+          "\\d{9}$": "Matches exactly 9 digits following the prefix."
+        }
+      },
+      "Belgium": {
+        "pattern": "^BE0\\d{9}$",
+        "explanation": {
+          "^BE0": "Matches the VAT prefix 'BE0' for Belgium.",
+          "\\d{9}$": "Matches exactly 9 digits following the prefix."
+        }
+      },
+      "Bosnia and Herzegovina": "Not applicable as Bosnia and Herzegovina does not have a VAT number system similar to that of the European Union. For business and tax purposes, companies use a national ID number system.",
+      "Bulgaria": {
+        "pattern": "^BG\\d{9,10}$",
+        "explanation": {
+          "^BG": "Matches the VAT prefix 'BG' for Bulgaria.",
+          "\\d{9,10}$": "Matches 9 or 10 digits following the prefix."
+        }
+      },
+      "Croatia": {
+        "pattern": "^HR\\d{11}$",
+        "explanation": {
+          "^HR": "Matches the VAT prefix 'HR' for Croatia.",
+          "\\d{11}$": "Matches exactly 11 digits following the prefix."
+        }
+      },
+      "Cyprus": {
+        "pattern": "^CY\\d{8}L$",
+        "explanation": {
+          "^CY": "Matches the VAT prefix 'CY' for Cyprus.",
+          "\\d{8}": "Matches exactly 8 digits.",
+          "L$": "Ends with the letter 'L'."
+        }
+      },
+      "Czech Republic": {
+        "pattern": "^CZ\\d{8,10}$",
+        "explanation": {
+          "^CZ": "Matches the VAT prefix 'CZ' for the Czech Republic.",
+          "\\d{8,10}$": "Matches 8 to 10 digits following the prefix."
+        }
+      },
+      "Denmark": {
+        "pattern": "^DK\\d{8}$",
+        "explanation": {
+          "^DK": "Matches the VAT prefix 'DK' for Denmark.",
+          "\\d{8}$": "Matches exactly 8 digits following the prefix."
+        }
+      },
+      "Estonia": {
+        "pattern": "^EE\\d{9}$",
+        "explanation": {
+          "^EE": "Matches the VAT prefix 'EE' for Estonia.",
+          "\\d{9}$": "Matches exactly 9 digits following the prefix."
+        }
+      },
+      "Finland": {
+        "pattern": "^FI\\d{8}$",
+        "explanation": {
+          "^FI": "Matches the VAT prefix 'FI' for Finland.",
+          "\\d{8}$": "Matches exactly 8 digits following the prefix."
+        }
+      },
+      "France": {
+        "pattern": "^FR[A-HJ-NP-Z0-9]{2}[0-9]{9}$",
+        "explanation": {
+          "^FR": "Matches the VAT prefix 'FR' for France.",
+          "[A-HJ-NP-Z0-9]{2}": "Matches two alphanumeric characters, excluding I and O.",
+          "[0-9]{9}$": "Matches exactly 9 digits following the prefix."
+        }
+      },
+      "Germany": {
+        "pattern": "^DE[0-9]{9}$",
+        "explanation": {
+          "^DE": "Matches the VAT prefix 'DE' for Germany.",
+          "[0-9]{9}$": "Matches exactly 9 digits following the prefix."
+        }
+      },
+      "Greece": {
+        "pattern": "^EL\\d{9}$",
+        "explanation": {
+          "^EL": "Matches the VAT prefix 'EL' for Greece.",
+          "\\d{9}$": "Matches exactly 9 digits following the prefix."
+        }
+      },
+      "Hungary": {
+        "pattern": "^HU\\d{8}$",
+        "explanation": {
+          "^HU": "Matches the VAT prefix 'HU' for Hungary.",
+          "\\d{8}$": "Matches exactly 8 digits following the prefix."
+        }
+      },
+      "Ireland": {
+        "pattern": "^IE\\d{7}[A-WY][A-I]?|IE[0-9+][A-Z+][0-9]{5}[A-WY]$",
+        "explanation": {
+          "^IE": "Matches the VAT prefix 'IE' for Ireland.",
+          "\\d{7}": "Matches exactly 7 digits following the prefix.",
+          "[A-WY]": "Matches a single letter from A to W or Y.",
+          "[A-I]?": "Optionally matches a single letter from A to I (used in certain VAT formats).",
+          "[0-9+][A-Z+]": "Matches an alternative format with a digit followed by a letter.",
+          "\\d{5}": "Matches 5 digits following the initial digit and letter.",
+          "[A-WY]$": "Matches the final letter in the VAT number from A to W or Y."
+        }
+      },
+      "Italy": {
+        "pattern": "^IT[0-9]{11}$",
+        "explanation": {
+          "^IT": "Matches the VAT prefix 'IT' for Italy.",
+          "[0-9]{11}$": "Matches exactly 11 digits following the prefix."
+        }
+      },
+      "Kosovo": {
+        "pattern": "^XK\\d{8}[A-Z]$",
+        "explanation": {
+          "^XK": "Matches the VAT prefix 'XK' for Kosovo.",
+          "\\d{8}": "Matches exactly 8 digits following the prefix.",
+          "[A-Z]$": "Ensures that the VAT number ends with a capital letter."
+        }
+      },
+      "Latvia": {
+        "pattern": "^LV\\d{11}$",
+        "explanation": {
+          "^LV": "Matches the VAT prefix 'LV' for Latvia.",
+          "\\d{11}$": "Matches exactly 11 digits following the prefix."
+        }
+      },
+      "Liechtenstein": {
+        "pattern": "^LI\\d{5}$",
+        "explanation": {
+          "^LI": "Matches the VAT prefix 'LI' for Liechtenstein.",
+          "\\d{5}$": "Matches exactly 5 digits following the prefix."
+        }
+      },
+      "Lithuania": {
+        "pattern": "^LT\\d{9,12}$",
+        "explanation": {
+          "^LT": "Matches the VAT prefix 'LT' for Lithuania.",
+          "\\d{9,12}$": "Matches 9 or 12 digits following the prefix."
+        }
+      },
+      "Luxembourg": {
+        "pattern": "^LU\\d{8}$",
+        "explanation": {
+          "^LU": "Matches the VAT prefix 'LU' for Luxembourg.",
+          "\\d{8}$": "Matches exactly 8 digits following the prefix."
+        }
+      },
+      "Malta": {
+        "pattern": "^MT\\d{8}$",
+        "explanation": {
+          "^MT": "Matches the VAT prefix 'MT' for Malta.",
+          "\\d{8}$": "Matches exactly 8 digits following the prefix."
+        }
+      },
+      "Moldova": {
+        "pattern": "^MD\\d{8}$",
+        "explanation": {
+          "^MD": "Matches the VAT prefix 'MD' for Moldova.",
+          "\\d{8}$": "Matches exactly 8 digits following the prefix."
+        }
+      },
+      "Montenegro": {
+        "pattern": "^ME\\d{8}$",
+        "explanation": {
+          "^ME": "Matches the VAT prefix 'ME' for Montenegro.",
+          "\\d{8}$": "Matches exactly 8 digits following the prefix."
+        }
+      },
+      "Monaco": {
+        "pattern": "^FR[A-HJ-NP-Z0-9]{2}\\d{9}$",
+        "explanation": {
+          "^FR": "Matches the VAT prefix 'FR' for Monaco, same as for France.",
+          "[A-HJ-NP-Z0-9]{2}": "Matches two alphanumeric characters, excluding I and O.",
+          "\\d{9}$": "Matches exactly 9 digits following the prefix."
+        }
+      },
+      "Netherlands": {
+        "pattern": "^NL\\d{9}B\\d{2}$",
+        "explanation": {
+          "^NL": "Matches the VAT prefix 'NL' for the Netherlands.",
+          "\\d{9}": "Matches exactly 9 digits.",
+          "B\\d{2}$": "Matches the letter 'B' followed by 2 digits at the end."
+        }
+      },
+      "North Macedonia": {
+        "pattern": "^MK\\d{13}$",
+        "explanation": {
+          "^MK": "Matches the VAT prefix 'MK' for North Macedonia.",
+          "\\d{13}$": "Matches exactly 13 digits following the prefix."
+        }
+      },
+      "Norway": {
+        "pattern": "^NO\\d{9}MVA$",
+        "explanation": {
+          "^NO": "Matches the VAT prefix 'NO' for Norway.",
+          "\\d{9}": "Matches exactly 9 digits.",
+          "MVA$": "Ends with 'MVA', which is the Norwegian abbreviation for VAT."
+        }
+      },
+      "Poland": {
+        "pattern": "^PL\\d{10}$",
+        "explanation": {
+          "^PL": "Matches the VAT prefix 'PL' for Poland.",
+          "\\d{10}$": "Matches exactly 10 digits following the prefix."
+        }
+      },
+      "Portugal": {
+        "pattern": "^PT\\d{9}$",
+        "explanation": {
+          "^PT": "Matches the VAT prefix 'PT' for Portugal.",
+          "\\d{9}$": "Matches exactly 9 digits following the prefix."
+        }
+      },
+      "Romania": {
+        "pattern": "^RO\\d{2,10}$",
+        "explanation": {
+          "^RO": "Matches the VAT prefix 'RO' for Romania.",
+          "\\d{2,10}$": "Matches between 2 and 10 digits following the prefix."
+        }
+      },
+      "San Marino": {
+        "pattern": "^SM\\d{5}$",
+        "explanation": {
+          "^SM": "Matches the VAT prefix 'SM' for San Marino.",
+          "\\d{5}$": "Matches exactly 5 digits following the prefix."
+        }
+      },
+      "Serbia": {
+        "pattern": "^RS\\d{9}$",
+        "explanation": {
+          "^RS": "Matches the VAT prefix 'RS' for Serbia.",
+          "\\d{9}$": "Matches exactly 9 digits following the prefix."
+        }
+      },
+      "Slovakia": {
+        "pattern": "^SK\\d{10}$",
+        "explanation": {
+          "^SK": "Matches the VAT prefix 'SK' for Slovakia.",
+          "\\d{10}$": "Matches exactly 10 digits following the prefix."
+        }
+      },
+      "Slovenia": {
+        "pattern": "^SI\\d{8}$",
+        "explanation": {
+          "^SI": "Matches the VAT prefix 'SI' for Slovenia.",
+          "\\d{8}$": "Matches exactly 8 digits following the prefix."
+        }
+      },
+      "Spain": {
+        "pattern": "^ES[A-Z]\\d{7}[A-Z]$|^ES[A-Z][0-9]{7}[0-9A-Z]$|^ES[0-9]{8}[A-Z]$",
+        "explanation": {
+          "^ES": "Matches the VAT prefix 'ES' for Spain.",
+          "[A-Z]\\d{7}[A-Z]$": "Matches a format with a letter, followed by 7 digits and another letter.",
+          "[A-Z][0-9]{7}[0-9A-Z]$": "Matches a format with a letter, followed by 7 digits and an alphanumeric character.",
+          "[0-9]{8}[A-Z]$": "Matches a format with 8 digits followed by a letter."
+        }
+      },
+      "Sweden": {
+        "pattern": "^SE\\d{12}$",
+        "explanation": {
+          "^SE": "Matches the VAT prefix 'SE' for Sweden.",
+          "\\d{12}$": "Matches exactly 12 digits following the prefix."
+        }
+      },
+      "Switzerland": {
+        "pattern": "^CHE\\d{9}(MWST|TVA|IVA)$",
+        "explanation": {
+          "^CHE": "Matches the VAT prefix 'CHE' for Switzerland.",
+          "\\d{9}": "Matches exactly 9 digits following the prefix.",
+          "(MWST|TVA|IVA)$": "Matches one of the Swiss VAT suffixes: 'MWST', 'TVA', or 'IVA'."
+        }
+      },
+      "Ukraine": {
+        "pattern": "^UA\\d{12}$",
+        "explanation": {
+          "^UA": "Matches the VAT prefix 'UA' for Ukraine.",
+          "\\d{12}$": "Matches exactly 12 digits following the prefix."
+        }
+      },
+      "United Kingdom": {
+        "pattern": "^GB\\d{9}$|^GB\\d{12}$|^GBGD\\d{3}$|^GBHA\\d{3}$",
+        "explanation": {
+          "^GB\\d{9}$": "Matches a format with the 'GB' prefix followed by 9 digits.",
+          "^GB\\d{12}$": "Matches a format with the 'GB' prefix followed by 12 digits.",
+          "^GBGD\\d{3}$": "Matches a format with the 'GBGD' prefix followed by 3 digits.",
+          "^GBHA\\d{3}$": "Matches a format with the 'GBHA' prefix followed by 3 digits."
+        }
+      }
+    },
+    "commonPatterns": {
+      "Dates": {
+        "pattern": "^(0?[1-9]|[12][0-9]|3[01])[- /.](0?[1-9]|1[012])[- /.]\\d{4}$",
+        "explanation": {
+          "^(0?[1-9]|[12][0-9]|3[01])": "Matches day of the month (01 to 31). The day part can be one or two digits.",
+          "[- /.]": "Matches a separator (either hyphen, dot, or space) between the day, month, and year.",
+          "(0?[1-9]|1[012])": "Matches the month (01 to 12). The month part can be one or two digits.",
+          "\\d{4}$": "Matches the year as a four-digit number."
+        }
+      },
+      "Currency": {
+        "pattern": "^€\\s?\\d{1,3}(,\\d{3})*(\\.\\d{2})?$",
+        "explanation": {
+          "^€": "Matches the Euro symbol (€) at the start.",
+          "\\s?": "Optionally matches a space between the Euro symbol and the amount.",
+          "\\d{1,3}": "Matches 1 to 3 digits at the beginning of the number.",
+          "(,\\d{3})*": "Matches any number of groups of 3 digits separated by commas, representing thousands.",
+          "(\\.\\d{2})?$": "Optionally matches a decimal point followed by exactly 2 digits, representing cents."
+        }
+      },
+      "CreditCards": {
+        "pattern": "^4[0-9]{12}(?:[0-9]{3})?$",
+        "explanation": {
+          "^4": "Matches a 4 at the start, indicating a Visa card.",
+          "[0-9]{12}": "Matches the next 12 digits of the credit card number.",
+          "(?:[0-9]{3})?$": "Optionally matches 3 more digits at the end, for a total of 15 or 16 digits."
+        }
+      }
+    }
+  }
+}

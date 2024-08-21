@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regex Pattern Generator | Generate & Understand Regular Expressions</title>
+    <meta name="description" content="Use the Regex Pattern Generator to easily create and understand regular expressions for phone numbers, postal codes, VAT numbers, and more. Supports multiple programming languages.">
+    <meta name="keywords" content="regex, regular expressions, pattern generator, phone number regex, postal code regex, VAT regex, regex explanation, code generator">
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/theme/material-darker.min.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": "Regex Pattern Generator",
+            "description": "Easily generate and understand regular expressions for various use cases such as phone numbers, postal codes, and VAT numbers. Supports multiple programming languages.",
+            "url": "https://github.com/mnestorov",
+            "creator": {
+                "@type": "Person",
+                "name": "Martin Nestorov"
+            },
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://mnestorov.github.io/regex-patterns"
+            }
+        }
+        </script>
+</head>
+<body>
+    <div class="page-container">
+        <!-- Header -->
+        <header class="text-white mb-2 pb-2">
+            <div class="container d-flex justify-content-between align-items-start">
+                <div>
+                    <h1 class="h3 mb-0"><a href="./" class="text-decoration-none text-white">Regex Pattern Generator</a></h1>
+                    <small class="text-secondary">for the European countries</small>
+                </div>
+                <a href="https://github.com/mnestorov/regex-patterns" target="_blank" class="text-white">
+                    <i class="bi bi-github" style="font-size: 1.5rem;"></i>
+                </a>
+            </div>
+        </header>
+        <!-- Description Block -->
+        <div class="container bg-transparent text-center">
+            <hr class="dotted">
+            <p class="lead">Designed to help developers easily generate and understand regular expressions for various use cases.</p>
+            <p class="">Select a pattern type, country, and programming language to see the corresponding regular expression and code example. You can also view a detailed explanation of how the regex works and export or copy the code for your project.</p>
+            <hr>
+        </div>
+        <div class="container pb-5 mt-4 content">
+            <form>
+                <div class="mb-3">
+                    <label for="patternType" class="form-label">Select Pattern Type:</label>
+                    <select id="patternType" class="form-select" onchange="updateCountriesAndLabel()">
+                        <option value="">Please select</option>
+                        <option value="phoneNumbers">Phone Numbers</option>
+                        <option value="postalCodes">Postal Codes</option>
+                        <option value="VATNumbers">VAT Numbers</option>
+                        <option value="commonPatterns">Common Patterns</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label id="secondSelectLabel" for="country" class="form-label">Select Country:</label>
+                    <select id="country" class="form-select">
+                        <option value="">Please select</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="programmingLanguage" class="form-label">Select Programming Language:</label>
+                    <select id="programmingLanguage" class="form-select">
+                        <option value="">Please select</option>
+                        <option value="PHP">PHP</option>
+                        <option value="JavaScript">JavaScript</option>
+                        <option value="Python">Python</option>
+                        <option value="C#">C#</option>
+                        <option value="Java">Java</option>
+                        <option value="Ruby">Ruby</option>
+                        <option value="Rust">Rust</option>
+                        <option value="Go">Go</option>
+                        <option value="Swift">Swift</option>
+                        <option value="Perl">Perl</option>
+                    </select>
+                </div>
+                <div>
+                    <button type="button" onclick="showPattern()" class="btn btn-primary">
+                        <i class="bi bi-eye"></i> Show Pattern and Code
+                    </button>
+                    <button type="button" onclick="resetForm()" class="btn btn-outline-danger ms-2">
+                        <i class="bi bi-arrow-clockwise"></i> Reset Form
+                    </button>
+                </div>
+            </form>
+            <div id="regexDisplay" class="alert alert-success mt-3">Regex pattern will be displayed here.</div>
+            <div class="accordion mt-3" id="explanationAccordion" style="display: none;">
+                <div class="accordion-item border border-3 border-warning rounded">
+                    <h2 class="accordion-header" id="headingExplanation">
+                        <button class="accordion-button text-bg-warning shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExplanation" aria-expanded="true" aria-controls="collapseExplanation">
+                            <strong><i class="bi bi-info-circle"></i> Explanation of Regex Pattern</strong>
+                        </button>
+                    </h2>
+                    <div id="collapseExplanation" class="accordion-collapse collapse show" aria-labelledby="headingExplanation" data-bs-parent="#explanationAccordion">
+                        <div class="accordion-body text-bg-dark" id="explanationBody">
+                            <!-- Explanation content will be dynamically generated here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="codeExampleDisplay" class="border border-3 border-success rounded p-3 mt-3">Code example will be displayed here.</div>
+            <div id="actions" class="mt-3">
+                <button id="exportButton" type="button" class="btn btn-success" style="display: none;">
+                    <i class="bi bi-download"></i> Export to File
+                </button>
+                <button id="copyButton" type="button" class="btn btn-success" style="display: none;">
+                    <i class="bi bi-clipboard"></i> Copy to Clipboard
+                </button>
+            </div>
+        </div>
+        <!-- Footer -->
+        <footer class="text-center mt-4 pt-4">
+            <div class="container">
+                <p class="my-3">&copy; 2024 - Developed by <a href="https://github.com/mnestorov/" target="_blank" class="text-decoration-none"><mark class="bg-primary text-white rounded">Martin Nestorov</mark></a></p>
+                <p class="text-secondary"><small>Contributions are welcome so feel free to fork the project on GitHub and submit a pull request. <br> Your help in improving this tool is greatly appreciated.</small></p>
+            </div>
+        </footer>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/clike/clike.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/javascript/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/python/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/ruby/ruby.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/go/go.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/swift/swift.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/perl/perl.min.js"></script>
+    <script src="assets/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+{
+  "name": "regex-pattern-generator",
+  "version": "1.0.0",
+  "description": "Use the Regex Pattern Generator to easily create and understand regular expressions for phone numbers, postal codes, VAT numbers, and more. Supports multiple programming languages.",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "http-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mnestorov/regex-patterns.git"
+  },
+  "keywords": [
+    "regex",
+    "regular",
+    "expressions",
+    "pattern",
+    "generator",
+    "phone",
+    "number",
+    "regex",
+    "postal",
+    "code",
+    "regex",
+    "VAT",
+    "regex",
+    "regex",
+    "explanation",
+    "code",
+    "generator"
+  ],
+  "author": "Martin Nestorov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mnestorov/regex-patterns/issues"
+  },
+  "homepage": "https://github.com/mnestorov/regex-patterns#readme",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
