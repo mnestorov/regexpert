@@ -63,6 +63,20 @@ function updateCountriesAndLabel() {
     }
 }
 
+function showComplianceWarnings(complianceData) {
+    const complianceWarnings = document.getElementById('complianceWarnings');
+    complianceWarnings.innerHTML = ''; // Clear existing warnings
+
+    if (complianceData) {
+        for (const [law, warning] of Object.entries(complianceData)) {
+            complianceWarnings.innerHTML += `<div class="alert alert-warning"><strong>${law} Compliance:</strong> ${warning}</div>`;
+        }
+        complianceWarnings.style.display = 'block'; // Show compliance warnings
+    } else {
+        complianceWarnings.style.display = 'none'; // Hide if no warnings
+    }
+}
+
 function showPattern() {
     const patternType = document.getElementById('patternType');
     const country = document.getElementById('country');
@@ -112,6 +126,10 @@ function showPattern() {
         .then(response => response.json())
         .then(data => {
             const selectedData = data.patterns[patternType.value][country.value];
+
+            if (selectedData.compliance) {
+                showComplianceWarnings(selectedData.compliance);
+            }
 
             if (typeof selectedData === 'string') {
                 // If it's a special message, display it directly without showing a regex pattern
