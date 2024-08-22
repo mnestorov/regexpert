@@ -87,3 +87,22 @@ input:invalid, select:invalid {
 .bi {
     margin-right: 5px;
 }
+
+.cookie-consent-banner {
+    display: none; /* Initially hidden */
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 1000;
+    opacity: 0.9;
+}
+
+.cookie-consent-banner p {
+    margin: 0;
+    padding: 0 10px;
+    display: inline-block;
+}
+
+.cookie-consent-banner button {
+    margin-top: 10px;
+}
