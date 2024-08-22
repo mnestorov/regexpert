@@ -87,18 +87,29 @@ function applyTemplate() {
         fetch('patterns.json')
             .then(response => response.json())
             .then(data => {
-                const selectedTemplate = data.validationTemplates[templateSelect];
-                if (selectedTemplate) {
+                // Ensure the validationTemplates object exists before trying to access it
+                if (data.validationTemplates && data.validationTemplates[templateSelect]) {
+                    const selectedTemplate = data.validationTemplates[templateSelect];
                     const regexDisplay = document.getElementById('regexDisplay');
+                    const explanationAccordion = document.getElementById('explanationAccordion');
+                    const explanationBody = document.getElementById('explanationBody');
+
+                    // Display the selected template's pattern
                     regexDisplay.innerHTML = `<strong>Regex Pattern:</strong> ${selectedTemplate.pattern}`;
                     regexDisplay.classList.remove('alert-danger', 'alert-danger-custom');
                     regexDisplay.classList.add('alert-success');
 
-                    const explanationBody = document.getElementById('explanationBody');
+                    // Display the explanation
                     explanationBody.innerHTML = `<strong class="text-warning">Explanation:</strong> ${selectedTemplate.explanation}`;
-                    document.getElementById('explanationAccordion').style.display = 'block';
+                    explanationAccordion.style.display = 'block';
 
-                    showComplianceWarnings(selectedTemplate.compliance);
+                    // Show compliance warnings if available
+                    const complianceWarnings = selectedTemplate.compliance;
+                    if (complianceWarnings) {
+                        showComplianceWarnings(complianceWarnings);
+                    }
+                } else {
+                    console.error('Selected template not found in validationTemplates.');
                 }
             })
             .catch(error => {
