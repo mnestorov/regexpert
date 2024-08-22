@@ -131,12 +131,14 @@ function showPattern() {
             regexDisplay.textContent = 'Failed to load patterns.';
             regexDisplay.classList.remove('alert-success');
             regexDisplay.classList.add('alert-danger');
+            
             console.error('Error loading the patterns:', error);
+            
             codeExampleDisplay.style.display = 'none'; // Hide code example
             exportButton.style.display = 'none'; // Hide export button
             copyButton.style.display = 'none'; // Hide copy button
             explanationAccordion.style.display = 'none'; // Hide explanation
-            disclaimerText.style.display = 'none'; // Hide disclaimer text
+            disclaimerText.classList.add('d-none'); // Hide disclaimer text
         });
 }
 
