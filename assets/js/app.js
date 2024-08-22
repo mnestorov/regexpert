@@ -35,31 +35,18 @@ function updateCountriesAndLabel() {
     const patternType = document.getElementById('patternType').value;
     const label = document.getElementById('secondSelectLabel');
     const countrySelect = document.getElementById('country');
-    const validationTemplateSelect = document.getElementById('validationTemplateSelectWrapper');
-    const countryWrapper = document.getElementById('countryWrapper');
-    const languageWrapper = document.getElementById('languageWrapper');
 
     if (patternType === 'commonPatterns') {
         label.textContent = 'Select Dates, Currency, CreditCards or Emails:';
-        countryWrapper.style.display = 'block';
-        validationTemplateSelect.style.display = 'none';
-    } else if (patternType === 'validationTemplates') {
-        label.textContent = '';
-        countryWrapper.style.display = 'none';
-        validationTemplateSelect.style.display = 'block';
     } else {
         label.textContent = 'Select Country:';
-        countryWrapper.style.display = 'block';
-        validationTemplateSelect.style.display = 'none';
     }
 
-    languageWrapper.style.display = patternType !== 'validationTemplates' ? 'block' : 'none';
-
-    if (patternType && patternType !== 'validationTemplates') {
+    if (patternType) {
         fetch('patterns.json')
             .then(response => response.json())
             .then(data => {
-                let options = '<option value="">Please select</option>';
+                let options = '<option value="">- Please select -</option>';
                 const patterns = data.patterns[patternType];
                 const items = Object.keys(patterns);
                 items.forEach(item => {
@@ -71,8 +58,8 @@ function updateCountriesAndLabel() {
                 console.error('Error fetching patterns:', error);
                 countrySelect.innerHTML = '<option value="">Error loading options</option>';
             });
-    } else if (!patternType) {
-        countrySelect.innerHTML = '<option value="">Please select pattern type first</option>';
+    } else {
+        countrySelect.innerHTML = '<option value="">- Please select - pattern type first</option>';
     }
 }
 
@@ -84,16 +71,23 @@ function applyTemplate() {
             .then(response => response.json())
             .then(data => {
                 const selectedTemplate = data.validationTemplates[templateSelect];
+                
                 if (selectedTemplate) {
+                    // Display the selected template's pattern
                     const regexDisplay = document.getElementById('regexDisplay');
                     regexDisplay.innerHTML = `<strong>Regex Pattern:</strong> ${selectedTemplate.pattern}`;
                     regexDisplay.classList.remove('alert-danger', 'alert-danger-custom');
                     regexDisplay.classList.add('alert-success');
 
+                    // Display the explanation
                     const explanationBody = document.getElementById('explanationBody');
                     explanationBody.innerHTML = `<strong class="text-warning">Explanation:</strong> ${selectedTemplate.explanation}`;
-                    document.getElementById('explanationAccordion').style.display = 'block';
 
+                    // Show the explanation accordion
+                    const explanationAccordion = document.getElementById('explanationAccordion');
+                    explanationAccordion.style.display = 'block';
+
+                    // Display the compliance warnings if any
                     showComplianceWarnings(selectedTemplate.compliance);
                 }
             })
@@ -156,7 +150,7 @@ function showPattern() {
 
     // If there's an error, display the message and return
     if (hasError) {
-        regexDisplay.textContent = 'Please select all fields.';
+        regexDisplay.textContent = '- Please select - all fields.';
         regexDisplay.classList.remove('alert-success', 'alert-danger-custom');
         regexDisplay.classList.add('alert-danger');
         codeExampleDisplay.style.display = 'none'; // Hide code example
@@ -366,7 +360,6 @@ function resetForm() {
     document.getElementById('patternType').value = '';
     document.getElementById('country').innerHTML = '<option value="">- Please select -</option>';
     document.getElementById('programmingLanguage').value = '';
-    document.getElementById('validationTemplates').value = '';
 
     // Clear the displayed results
     document.getElementById('regexDisplay').textContent = 'Regex pattern will be displayed here.';
@@ -395,9 +388,4 @@ function resetForm() {
         complianceWarnings.style.display = 'none';
         complianceWarnings.innerHTML = ''; // Clear the warnings content
     }
-
-    // Reset visibility of select fields
-    document.getElementById('countryWrapper').style.display = 'block';
-    document.getElementById('validationTemplateSelectWrapper').style.display = 'none';
-    document.getElementById('languageWrapper').style.display = 'block';
 }
