@@ -43,14 +43,17 @@ function updateCountriesAndLabel() {
         label.textContent = 'Select Dates, Currency, CreditCards or Emails:';
         countryWrapper.style.display = 'block';
         validationTemplateSelect.style.display = 'none';
+        countrySelect.required = true;
     } else if (patternType === 'validationTemplates') {
         label.textContent = 'Select Validation Template:';
         countryWrapper.style.display = 'none';
         validationTemplateSelect.style.display = 'block';
+        countrySelect.required = false; // Make country not required
     } else {
         label.textContent = 'Select Country:';
         countryWrapper.style.display = 'block';
         validationTemplateSelect.style.display = 'none';
+        countrySelect.required = true;
     }
 
     // Always show the language select if a pattern type is selected
@@ -401,4 +404,7 @@ function resetForm() {
     document.getElementById('countryWrapper').style.display = 'block';
     document.getElementById('validationTemplateSelectWrapper').style.display = 'none';
     document.getElementById('languageWrapper').style.display = 'block';
+
+    // Make country required by default
+    document.getElementById('country').required = true;
 }
