@@ -43,21 +43,17 @@ function updateCountriesAndLabel() {
         label.textContent = 'Select Dates, Currency, CreditCards or Emails:';
         countryWrapper.style.display = 'block';
         validationTemplateSelect.style.display = 'none';
-        countrySelect.required = true;
     } else if (patternType === 'validationTemplates') {
-        label.textContent = 'Select Validation Template:';
+        label.textContent = '';
         countryWrapper.style.display = 'none';
         validationTemplateSelect.style.display = 'block';
-        countrySelect.required = false; // Make country not required
     } else {
         label.textContent = 'Select Country:';
         countryWrapper.style.display = 'block';
         validationTemplateSelect.style.display = 'none';
-        countrySelect.required = true;
     }
 
-    // Always show the language select if a pattern type is selected
-    languageWrapper.style.display = patternType ? 'block' : 'none';
+    languageWrapper.style.display = patternType !== 'validationTemplates' ? 'block' : 'none';
 
     if (patternType && patternType !== 'validationTemplates') {
         fetch('patterns.json')
