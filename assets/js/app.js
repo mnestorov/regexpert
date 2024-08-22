@@ -84,9 +84,6 @@ function updateCountriesAndLabel() {
 
 function applyTemplate() {
     const templateSelect = document.getElementById('validationTemplates').value;
-    const regexDisplay = document.getElementById('regexDisplay');
-    const explanationAccordion = document.getElementById('explanationAccordion');
-    const explanationBody = document.getElementById('explanationBody');
 
     if (templateSelect) {
         fetch('patterns.json')
@@ -95,6 +92,9 @@ function applyTemplate() {
                 // Ensure the validationTemplates object exists before trying to access it
                 if (data.validationTemplates && data.validationTemplates[templateSelect]) {
                     const selectedTemplate = data.validationTemplates[templateSelect];
+                    const regexDisplay = document.getElementById('regexDisplay');
+                    const explanationAccordion = document.getElementById('explanationAccordion');
+                    const explanationBody = document.getElementById('explanationBody');
 
                     // Display the selected template's pattern
                     regexDisplay.innerHTML = `<strong>Regex Pattern:</strong> ${selectedTemplate.pattern}`;
@@ -110,10 +110,6 @@ function applyTemplate() {
                     if (complianceWarnings) {
                         showComplianceWarnings(complianceWarnings);
                     }
-
-                    // Hide language and show pattern button as these are not needed
-                    document.getElementById('languageWrapper').style.display = 'none';
-                    document.getElementById('showPatternButton').style.display = 'none';
                 } else {
                     console.error('Selected template not found in validationTemplates.');
                 }
@@ -421,8 +417,4 @@ function resetForm() {
     document.getElementById('countryWrapper').style.display = 'block';
     document.getElementById('validationTemplateSelectWrapper').style.display = 'none';
     document.getElementById('languageWrapper').style.display = 'block';
-    document.getElementById('showPatternButton').style.display = 'block';
-
-    // Reset the country label to its default state
-    document.getElementById('secondSelectLabel').textContent = 'Select Country:';
 }
