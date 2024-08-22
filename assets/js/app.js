@@ -38,8 +38,6 @@ function updateCountriesAndLabel() {
     const validationTemplateSelect = document.getElementById('validationTemplateSelectWrapper');
     const countryWrapper = document.getElementById('countryWrapper');
     const languageWrapper = document.getElementById('languageWrapper');
-    const showPatternButton = document.getElementById('showPatternButton');
-    const codeExampleDisplay = document.getElementById('codeExampleDisplay');
 
     if (patternType === 'commonPatterns') {
         label.textContent = 'Select Dates, Currency, CreditCards or Emails:';
@@ -49,17 +47,13 @@ function updateCountriesAndLabel() {
         label.textContent = '';
         countryWrapper.style.display = 'none';
         validationTemplateSelect.style.display = 'block';
-        languageWrapper.style.display = 'none';
-        showPatternButton.style.display = 'none';
-        codeExampleDisplay.style.display = 'none';
     } else {
         label.textContent = 'Select Country:';
         countryWrapper.style.display = 'block';
         validationTemplateSelect.style.display = 'none';
-        languageWrapper.style.display = 'block';
-        showPatternButton.style.display = 'block';
-        codeExampleDisplay.style.display = 'block';
     }
+
+    languageWrapper.style.display = patternType !== 'validationTemplates' ? 'block' : 'none';
 
     if (patternType && patternType !== 'validationTemplates') {
         fetch('patterns.json')
@@ -417,4 +411,7 @@ function resetForm() {
     document.getElementById('countryWrapper').style.display = 'block';
     document.getElementById('validationTemplateSelectWrapper').style.display = 'none';
     document.getElementById('languageWrapper').style.display = 'block';
+
+    // Make country required by default
+    document.getElementById('country').required = true;
 }
