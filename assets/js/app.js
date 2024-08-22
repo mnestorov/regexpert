@@ -83,29 +83,18 @@ function applyTemplate() {
         fetch('patterns.json')
             .then(response => response.json())
             .then(data => {
-                // Ensure the validationTemplates object exists before trying to access it
-                if (data.validationTemplates && data.validationTemplates[templateSelect]) {
-                    const selectedTemplate = data.validationTemplates[templateSelect];
+                const selectedTemplate = data.validationTemplates[templateSelect];
+                if (selectedTemplate) {
                     const regexDisplay = document.getElementById('regexDisplay');
-                    const explanationAccordion = document.getElementById('explanationAccordion');
-                    const explanationBody = document.getElementById('explanationBody');
-
-                    // Display the selected template's pattern
                     regexDisplay.innerHTML = `<strong>Regex Pattern:</strong> ${selectedTemplate.pattern}`;
                     regexDisplay.classList.remove('alert-danger', 'alert-danger-custom');
                     regexDisplay.classList.add('alert-success');
 
-                    // Display the explanation
+                    const explanationBody = document.getElementById('explanationBody');
                     explanationBody.innerHTML = `<strong class="text-warning">Explanation:</strong> ${selectedTemplate.explanation}`;
-                    explanationAccordion.style.display = 'block';
+                    document.getElementById('explanationAccordion').style.display = 'block';
 
-                    // Show compliance warnings if available
-                    const complianceWarnings = selectedTemplate.compliance;
-                    if (complianceWarnings) {
-                        showComplianceWarnings(complianceWarnings);
-                    }
-                } else {
-                    console.error('Selected template not found in validationTemplates.');
+                    showComplianceWarnings(selectedTemplate.compliance);
                 }
             })
             .catch(error => {
@@ -411,7 +400,4 @@ function resetForm() {
     document.getElementById('countryWrapper').style.display = 'block';
     document.getElementById('validationTemplateSelectWrapper').style.display = 'none';
     document.getElementById('languageWrapper').style.display = 'block';
-
-    // Make country required by default
-    document.getElementById('country').required = true;
 }
