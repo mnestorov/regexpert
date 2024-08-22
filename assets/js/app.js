@@ -35,18 +35,31 @@ function updateCountriesAndLabel() {
     const patternType = document.getElementById('patternType').value;
     const label = document.getElementById('secondSelectLabel');
     const countrySelect = document.getElementById('country');
+    const validationTemplateSelect = document.getElementById('validationTemplateSelectWrapper');
+    const countryWrapper = document.getElementById('countryWrapper');
+    const languageWrapper = document.getElementById('languageWrapper');
 
     if (patternType === 'commonPatterns') {
         label.textContent = 'Select Dates, Currency, CreditCards or Emails:';
+        countryWrapper.style.display = 'block';
+        validationTemplateSelect.style.display = 'none';
+    } else if (patternType === 'validationTemplates') {
+        label.textContent = '';
+        countryWrapper.style.display = 'none';
+        validationTemplateSelect.style.display = 'block';
     } else {
         label.textContent = 'Select Country:';
+        countryWrapper.style.display = 'block';
+        validationTemplateSelect.style.display = 'none';
     }
 
-    if (patternType) {
+    languageWrapper.style.display = patternType !== 'validationTemplates' ? 'block' : 'none';
+
+    if (patternType && patternType !== 'validationTemplates') {
         fetch('patterns.json')
             .then(response => response.json())
             .then(data => {
-                let options = '<option value="">- Please select -</option>';
+                let options = '<option value="">Please select</option>';
                 const patterns = data.patterns[patternType];
                 const items = Object.keys(patterns);
                 items.forEach(item => {
@@ -58,8 +71,35 @@ function updateCountriesAndLabel() {
                 console.error('Error fetching patterns:', error);
                 countrySelect.innerHTML = '<option value="">Error loading options</option>';
             });
-    } else {
-        countrySelect.innerHTML = '<option value="">- Please select - pattern type first</option>';
+    } else if (!patternType) {
+        countrySelect.innerHTML = '<option value="">Please select pattern type first</option>';
+    }
+}
+
+function applyTemplate() {
+    const templateSelect = document.getElementById('validationTemplates').value;
+
+    if (templateSelect) {
+        fetch('patterns.json')
+            .then(response => response.json())
+            .then(data => {
+                const selectedTemplate = data.validationTemplates[templateSelect];
+                if (selectedTemplate) {
+                    const regexDisplay = document.getElementById('regexDisplay');
+                    regexDisplay.innerHTML = `<strong>Regex Pattern:</strong> ${selectedTemplate.pattern}`;
+                    regexDisplay.classList.remove('alert-danger', 'alert-danger-custom');
+                    regexDisplay.classList.add('alert-success');
+
+                    const explanationBody = document.getElementById('explanationBody');
+                    explanationBody.innerHTML = `<strong class="text-warning">Explanation:</strong> ${selectedTemplate.explanation}`;
+                    document.getElementById('explanationAccordion').style.display = 'block';
+
+                    showComplianceWarnings(selectedTemplate.compliance);
+                }
+            })
+            .catch(error => {
+                console.error('Error loading the template:', error);
+            });
     }
 }
 
@@ -326,6 +366,7 @@ function resetForm() {
     document.getElementById('patternType').value = '';
     document.getElementById('country').innerHTML = '<option value="">- Please select -</option>';
     document.getElementById('programmingLanguage').value = '';
+    document.getElementById('validationTemplates').value = '';
 
     // Clear the displayed results
     document.getElementById('regexDisplay').textContent = 'Regex pattern will be displayed here.';
@@ -354,4 +395,9 @@ function resetForm() {
         complianceWarnings.style.display = 'none';
         complianceWarnings.innerHTML = ''; // Clear the warnings content
     }
+
+    // Reset visibility of select fields
+    document.getElementById('countryWrapper').style.display = 'block';
+    document.getElementById('validationTemplateSelectWrapper').style.display = 'none';
+    document.getElementById('languageWrapper').style.display = 'block';
 }

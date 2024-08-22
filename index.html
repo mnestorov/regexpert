@@ -63,13 +63,21 @@
                         <option value="commonPatterns">Common Patterns</option>
                     </select>
                 </div>
-                <div class="mb-3">
+                <div id="validationTemplateSelectWrapper" class="mb-3" style="display: none;">
+                    <label for="validationTemplates" class="form-label">Select Validation Template:</label>
+                    <select id="validationTemplates" class="form-select" onchange="applyTemplate()">
+                        <option value="">Please select</option>
+                        <option value="GDPR_Consent_Email">GDPR Consent Email</option>
+                        <option value="PCI_DSS_CreditCard">PCI-DSS Credit Card</option>
+                    </select>
+                </div>
+                <div id="countryWrapper" class="mb-3">
                     <label id="secondSelectLabel" for="country" class="form-label">Select Country:</label>
                     <select id="country" class="form-select">
                         <option value="">- Please select -</option>
                     </select>
                 </div>
-                <div class="mb-3">
+                <div id="languageWrapper" class="mb-3">
                     <label for="programmingLanguage" class="form-label">Select Programming Language:</label>
                     <select id="programmingLanguage" class="form-select">
                         <option value="">- Please select -</option>

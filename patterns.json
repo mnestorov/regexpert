@@ -975,6 +975,22 @@
           "HIPAA": "Avoid using this pattern for health-related data without encryption and proper safeguards."
         }
       }
+    },
+    "validationTemplates": {
+      "GDPR_Consent_Email": {
+        "pattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+        "explanation": "This regex is for validating emails while ensuring GDPR compliance. Ensure you have obtained consent.",
+        "compliance": {
+          "GDPR": "Only use this pattern with explicit consent for collecting email addresses."
+        }
+      },
+      "PCI_DSS_CreditCard": {
+        "pattern": "^4[0-9]{12}(?:[0-9]{3})?$",
+        "explanation": "This regex validates Visa card numbers. It should be used in a PCI-DSS compliant environment.",
+        "compliance": {
+          "PCI-DSS": "Store and process credit card data in a PCI-DSS compliant manner."
+        }
+      }
     }
   }
 }
