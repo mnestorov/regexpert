@@ -958,6 +958,15 @@
           "[0-9]{12}": "Matches the next 12 digits of the credit card number.",
           "(?:[0-9]{3})?$": "Optionally matches 3 more digits at the end, for a total of 15 or 16 digits."
         }
+      },
+      "Emails": {
+        "pattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+        "explanation": {
+          "^[a-zA-Z0-9._%+-]+": "Matches the email username, which can include letters, digits, dots, underscores, percent signs, plus signs, and hyphens.",
+          "@": "Matches the @ symbol, which separates the username from the domain.",
+          "[a-zA-Z0-9.-]+": "Matches the domain name, which can include letters, digits, dots, and hyphens.",
+          "\\.[a-zA-Z]{2,}$": "Matches the domain suffix, which consists of a dot followed by 2 or more letters."
+        }
       }
     }
   }
