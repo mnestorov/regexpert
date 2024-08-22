@@ -263,4 +263,5 @@ function resetForm() {
     document.getElementById('exportButton').style.display = 'none';
     document.getElementById('copyButton').style.display = 'none';
     document.getElementById('explanationAccordion').style.display = 'none';
+    document.getElementById('disclaimerText').style.display = 'none';
 }
