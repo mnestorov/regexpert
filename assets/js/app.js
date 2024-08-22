@@ -46,7 +46,7 @@ function updateCountriesAndLabel() {
         fetch('patterns.json')
             .then(response => response.json())
             .then(data => {
-                let options = '<option value="">Please select</option>';
+                let options = '<option value="">- Please select -</option>';
                 const patterns = data.patterns[patternType];
                 const items = Object.keys(patterns);
                 items.forEach(item => {
@@ -59,7 +59,7 @@ function updateCountriesAndLabel() {
                 countrySelect.innerHTML = '<option value="">Error loading options</option>';
             });
     } else {
-        countrySelect.innerHTML = '<option value="">Please select pattern type first</option>';
+        countrySelect.innerHTML = '<option value="">- Please select - pattern type first</option>';
     }
 }
 
@@ -97,7 +97,7 @@ function showPattern() {
 
     // If there's an error, display the message and return
     if (hasError) {
-        regexDisplay.textContent = 'Please select all fields.';
+        regexDisplay.textContent = '- Please select - all fields.';
         regexDisplay.classList.remove('alert-success', 'alert-danger-custom');
         regexDisplay.classList.add('alert-danger');
         codeExampleDisplay.style.display = 'none'; // Hide code example
@@ -301,7 +301,7 @@ function fallbackCopyToClipboard(text) {
 function resetForm() {
     // Reset the form fields
     document.getElementById('patternType').value = '';
-    document.getElementById('country').innerHTML = '<option value="">Please select</option>';
+    document.getElementById('country').innerHTML = '<option value="">- Please select -</option>';
     document.getElementById('programmingLanguage').value = '';
 
     // Clear the displayed results
