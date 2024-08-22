@@ -347,4 +347,11 @@ function resetForm() {
     if (disclaimer) {
         disclaimer.classList.add('d-none');
     }
+
+    // Hide compliance warnings
+    const complianceWarnings = document.getElementById('complianceWarnings');
+    if (complianceWarnings) {
+        complianceWarnings.style.display = 'none';
+        complianceWarnings.innerHTML = ''; // Clear the warnings content
+    }
 }
