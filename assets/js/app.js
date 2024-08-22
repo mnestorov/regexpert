@@ -388,4 +388,14 @@ function resetForm() {
         complianceWarnings.style.display = 'none';
         complianceWarnings.innerHTML = ''; // Clear the warnings content
     }
+
+    // Reset the label for the second select field
+    const label = document.getElementById('secondSelectLabel');
+    label.textContent = 'Select Country:'; // Reset the label to default
+
+    // Reset visibility of select fields
+    document.getElementById('countryWrapper').style.display = 'block';
+    document.getElementById('validationTemplateSelectWrapper').style.display = 'none';
+    document.getElementById('languageWrapper').style.display = 'block';
+    document.getElementById('showPatternButton').style.display = 'block';
 }
