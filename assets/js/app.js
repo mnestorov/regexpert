@@ -37,7 +37,7 @@ function updateCountriesAndLabel() {
     const countrySelect = document.getElementById('country');
 
     if (patternType === 'commonPatterns') {
-        label.textContent = 'Select Dates, Currency or CreditCards:';
+        label.textContent = 'Select Dates, Currency, CreditCards or Emails:';
     } else {
         label.textContent = 'Select Country:';
     }
