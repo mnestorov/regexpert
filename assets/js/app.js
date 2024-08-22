@@ -44,7 +44,7 @@ function updateCountriesAndLabel() {
         countryWrapper.style.display = 'block';
         validationTemplateSelect.style.display = 'none';
     } else if (patternType === 'validationTemplates') {
-        label.textContent = '';
+        label.textContent = 'Select Validation Template:';
         countryWrapper.style.display = 'none';
         validationTemplateSelect.style.display = 'block';
     } else {
@@ -53,7 +53,8 @@ function updateCountriesAndLabel() {
         validationTemplateSelect.style.display = 'none';
     }
 
-    languageWrapper.style.display = patternType !== 'validationTemplates' ? 'block' : 'none';
+    // Always show the language select if a pattern type is selected
+    languageWrapper.style.display = patternType ? 'block' : 'none';
 
     if (patternType && patternType !== 'validationTemplates') {
         fetch('patterns.json')
@@ -156,7 +157,7 @@ function showPattern() {
 
     // If there's an error, display the message and return
     if (hasError) {
-        regexDisplay.textContent = '- Please select - all fields.';
+        regexDisplay.textContent = 'Please select all fields.';
         regexDisplay.classList.remove('alert-success', 'alert-danger-custom');
         regexDisplay.classList.add('alert-danger');
         codeExampleDisplay.style.display = 'none'; // Hide code example
