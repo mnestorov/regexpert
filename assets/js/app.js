@@ -65,15 +65,20 @@ function updateCountriesAndLabel() {
 
 function showComplianceWarnings(complianceData) {
     const complianceWarnings = document.getElementById('complianceWarnings');
-    complianceWarnings.innerHTML = ''; // Clear existing warnings
+    
+    if (complianceWarnings) {
+        complianceWarnings.innerHTML = ''; // Clear existing warnings
 
-    if (complianceData) {
-        for (const [law, warning] of Object.entries(complianceData)) {
-            complianceWarnings.innerHTML += `<div class="alert alert-warning"><strong>${law} Compliance:</strong> ${warning}</div>`;
+        if (complianceData) {
+            for (const [law, warning] of Object.entries(complianceData)) {
+                complianceWarnings.innerHTML += `<div class="alert alert-warning"><strong>${law} Compliance:</strong> ${warning}</div>`;
+            }
+            complianceWarnings.style.display = 'block'; // Show compliance warnings
+        } else {
+            complianceWarnings.style.display = 'none'; // Hide if no warnings
         }
-        complianceWarnings.style.display = 'block'; // Show compliance warnings
     } else {
-        complianceWarnings.style.display = 'none'; // Hide if no warnings
+        console.error('complianceWarnings element not found in the DOM.');
     }
 }
 
