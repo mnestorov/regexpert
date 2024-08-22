@@ -40,7 +40,7 @@ function showPattern() {
     const copyButton = document.getElementById('copyButton');
     const explanationAccordion = document.getElementById('explanationAccordion');
     const explanationBody = document.getElementById('explanationBody');
-    const disclaimerText = document.getElementById('disclaimerText'); // Get the disclaimer text element
+    const disclaimerText = document.getElementById('disclaimerText');
 
     let hasError = false;
 
@@ -98,11 +98,15 @@ function showPattern() {
                 regexDisplay.innerHTML = `<strong>Regex Pattern:</strong> ${selectedPattern}`;
                 regexDisplay.classList.remove('alert-danger', 'alert-danger-custom');
                 regexDisplay.classList.add('alert-success');
+                
                 const codeExample = displayCodeExample(selectedPattern, language.value);
+                
                 codeExampleDisplay.style.display = 'block'; // Show code example
                 exportButton.style.display = 'inline-block'; // Show export button
                 copyButton.style.display = 'inline-block'; // Show copy button
-                disclaimerText.classList.remove('d-none'); // Show disclaimer text
+
+                // Disclaimer is shown after the code example is displayed
+                disclaimerText.classList.remove('d-none'); 
 
                 // Display the explanation
                 const explanation = selectedData.explanation;
@@ -131,9 +135,7 @@ function showPattern() {
             regexDisplay.textContent = 'Failed to load patterns.';
             regexDisplay.classList.remove('alert-success');
             regexDisplay.classList.add('alert-danger');
-            
             console.error('Error loading the patterns:', error);
-            
             codeExampleDisplay.style.display = 'none'; // Hide code example
             exportButton.style.display = 'none'; // Hide export button
             copyButton.style.display = 'none'; // Hide copy button
