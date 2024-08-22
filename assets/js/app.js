@@ -40,6 +40,7 @@ function showPattern() {
     const copyButton = document.getElementById('copyButton');
     const explanationAccordion = document.getElementById('explanationAccordion');
     const explanationBody = document.getElementById('explanationBody');
+    const disclaimerText = document.getElementById('disclaimerText'); // Get the disclaimer text element
 
     let hasError = false;
 
@@ -71,6 +72,7 @@ function showPattern() {
         exportButton.style.display = 'none'; // Hide export button
         copyButton.style.display = 'none'; // Hide copy button
         explanationAccordion.style.display = 'none'; // Hide explanation
+        disclaimerText.classList.add('d-none'); // Hide disclaimer text
         return;
     }
 
@@ -89,6 +91,7 @@ function showPattern() {
                 exportButton.style.display = 'none'; // Hide export button
                 copyButton.style.display = 'none'; // Hide copy button
                 explanationAccordion.style.display = 'none'; // Hide explanation
+                disclaimerText.classList.add('d-none'); // Hide disclaimer text
             } else {
                 // Otherwise, display the regex pattern and code example
                 const selectedPattern = selectedData.pattern;
@@ -99,6 +102,7 @@ function showPattern() {
                 codeExampleDisplay.style.display = 'block'; // Show code example
                 exportButton.style.display = 'inline-block'; // Show export button
                 copyButton.style.display = 'inline-block'; // Show copy button
+                disclaimerText.classList.remove('d-none'); // Show disclaimer text
 
                 // Display the explanation
                 const explanation = selectedData.explanation;
@@ -132,6 +136,7 @@ function showPattern() {
             exportButton.style.display = 'none'; // Hide export button
             copyButton.style.display = 'none'; // Hide copy button
             explanationAccordion.style.display = 'none'; // Hide explanation
+            disclaimerText.classList.add('d-none'); // Hide disclaimer text
         });
 }
 
