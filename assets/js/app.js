@@ -40,7 +40,6 @@ function showPattern() {
     const copyButton = document.getElementById('copyButton');
     const explanationAccordion = document.getElementById('explanationAccordion');
     const explanationBody = document.getElementById('explanationBody');
-    const disclaimerText = document.getElementById('disclaimerText');
 
     let hasError = false;
 
@@ -72,7 +71,6 @@ function showPattern() {
         exportButton.style.display = 'none'; // Hide export button
         copyButton.style.display = 'none'; // Hide copy button
         explanationAccordion.style.display = 'none'; // Hide explanation
-        disclaimerText.classList.add('d-none'); // Hide disclaimer text
         return;
     }
 
@@ -91,7 +89,6 @@ function showPattern() {
                 exportButton.style.display = 'none'; // Hide export button
                 copyButton.style.display = 'none'; // Hide copy button
                 explanationAccordion.style.display = 'none'; // Hide explanation
-                disclaimerText.classList.add('d-none'); // Hide disclaimer text
             } else {
                 // Otherwise, display the regex pattern and code example
                 const selectedPattern = selectedData.pattern;
@@ -105,8 +102,8 @@ function showPattern() {
                 exportButton.style.display = 'inline-block'; // Show export button
                 copyButton.style.display = 'inline-block'; // Show copy button
 
-                // Disclaimer is shown after the code example is displayed
-                disclaimerText.classList.remove('d-none'); 
+                // Inject disclaimer text dynamically
+                injectDisclaimerText();
 
                 // Display the explanation
                 const explanation = selectedData.explanation;
@@ -131,7 +128,8 @@ function showPattern() {
                 };
             }
         })
-        .catch(error => {
+        .catch(
+            error => {
             regexDisplay.textContent = 'Failed to load patterns.';
             regexDisplay.classList.remove('alert-success');
             regexDisplay.classList.add('alert-danger');
@@ -140,7 +138,6 @@ function showPattern() {
             exportButton.style.display = 'none'; // Hide export button
             copyButton.style.display = 'none'; // Hide copy button
             explanationAccordion.style.display = 'none'; // Hide explanation
-            disclaimerText.classList.add('d-none'); // Hide disclaimer text
         });
 }
 
@@ -193,6 +190,27 @@ function getModeForLanguage(language) {
         'Perl': 'perl'
     };
     return modes[language] || 'text/plain';
+}
+
+// Function to inject disclaimer text dynamically
+function injectDisclaimerText() {
+    const disclaimerId = 'disclaimerText';
+    let disclaimer = document.getElementById(disclaimerId);
+    
+    // If the disclaimer doesn't already exist, create and inject it
+    if (!disclaimer) {
+        disclaimer = document.createElement('small');
+        disclaimer.id = disclaimerId;
+        disclaimer.className = 'text-secondary mt-2 d-block';
+        disclaimer.innerHTML = `Please note that these code samples are automatically generated. They are not guaranteed to work. If you find a syntax error, <a href="https://github.com/mnestorov/regex-patterns/issues" target="_blank" class="link-secondary">please submit a bug report</a>.`;
+
+        // Inject the disclaimer after the code example
+        const codeExampleDisplay = document.getElementById('codeExampleDisplay');
+        codeExampleDisplay.parentNode.insertBefore(disclaimer, codeExampleDisplay.nextSibling);
+    } else {
+        // If it exists, make sure it's visible
+        disclaimer.classList.remove('d-none');
+    }
 }
 
 // Function to export the pattern and code example to a file
