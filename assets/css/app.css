@@ -102,7 +102,3 @@ input:invalid, select:invalid {
     padding: 0 10px;
     display: inline-block;
 }
-
-.cookie-consent-banner button {
-    margin-top: 10px;
-}
