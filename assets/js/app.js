@@ -136,7 +136,7 @@ function showPattern() {
             exportButton.style.display = 'none'; // Hide export button
             copyButton.style.display = 'none'; // Hide copy button
             explanationAccordion.style.display = 'none'; // Hide explanation
-            disclaimerText.classList.add('d-none'); // Hide disclaimer text
+            disclaimerText.style.display = 'none'; // Hide disclaimer text
         });
 }
 
