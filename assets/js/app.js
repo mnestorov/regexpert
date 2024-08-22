@@ -35,6 +35,7 @@ function updateCountriesAndLabel() {
     const patternType = document.getElementById('patternType').value;
     const label = document.getElementById('secondSelectLabel');
     const countrySelect = document.getElementById('country');
+    const complianceWarnings = document.getElementById('complianceWarnings');
 
     if (patternType === 'commonPatterns') {
         label.textContent = 'Select Dates, Currency, CreditCards or Emails:';
@@ -53,6 +54,18 @@ function updateCountriesAndLabel() {
                     options += `<option value="${item}">${item}</option>`;
                 });
                 countrySelect.innerHTML = options;
+
+                // Check if the selected pattern type is 'Dates' or 'Currency'
+                if (patternType === 'commonPatterns') {
+                    // Hide compliance warnings for 'Dates' or 'Currency'
+                    countrySelect.addEventListener('change', function () {
+                        const selectedOption = countrySelect.value;
+                        if (selectedOption === 'Dates' || selectedOption === 'Currency') {
+                            complianceWarnings.style.display = 'none';
+                            complianceWarnings.innerHTML = '';
+                        }
+                    });
+                }
             })
             .catch(error => {
                 console.error('Error fetching patterns:', error);

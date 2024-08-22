@@ -958,7 +958,7 @@
           "[0-9]{12}": "Matches the next 12 digits of the credit card number.",
           "(?:[0-9]{3})?$": "Optionally matches 3 more digits at the end, for a total of 15 or 16 digits."
         },
-          "compliance": {
+        "compliance": {
           "PCI-DSS": "Credit card data must be stored securely and must comply with PCI-DSS standards."
         }
       },
