@@ -88,16 +88,20 @@ export class FormManager {
         };
 
         const codeExample = codeExamples[language];
-        this.codeExampleDisplay.innerHTML = `<textarea id="codeMirrorEditor">${codeExample}</textarea>`;
+    const codeExampleDisplay = document.getElementById('codeExampleDisplay');
 
-        CodeMirror.fromTextArea(document.getElementById('codeMirrorEditor'), {
-            lineNumbers: true,
-            mode: this.getModeForLanguage(language),
-            theme: 'material-darker',
-            readOnly: true,
-            tabSize: 4,
-            indentWithTabs: true
-        });
+        if (codeExampleDisplay) {
+            // Display the code example using CodeMirror or plain text
+            codeExampleDisplay.innerHTML = `<textarea id="codeMirrorEditor">${codeExample}</textarea>`;
+            CodeMirror.fromTextArea(document.getElementById('codeMirrorEditor'), {
+                lineNumbers: true,
+                mode: this.getModeForLanguage(language),
+                theme: 'material-darker',
+                readOnly: true,
+                tabSize: 4,
+                indentWithTabs: true
+            });
+        }
 
         return codeExample;
     }
