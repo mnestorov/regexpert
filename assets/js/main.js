@@ -18,12 +18,13 @@ document.addEventListener('DOMContentLoaded', () => {
     formManager.init();
     seoManager.injectStructuredData();
 
-    // Initialize the TemplateManager only after the template has been rendered
-    const templateManager = new TemplateManager();
-    templateManager.init();
-
     // Bind event listeners
     document.getElementById('patternType').addEventListener('change', () => patternManager.updateCountriesAndLabel());
     document.getElementById('showPatternButton').addEventListener('click', () => formManager.showPattern());
     document.getElementById('resetFormButton').addEventListener('click', () => formManager.resetForm());
+
+    // Attach functions to the global window object (if needed for inline handlers)
+    window.updateCountriesAndLabel = () => patternManager.updateCountriesAndLabel();
+    window.showPattern = () => formManager.showPattern();
+    window.resetForm = () => formManager.resetForm();
 });
