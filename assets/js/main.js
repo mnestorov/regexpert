@@ -18,12 +18,24 @@ document.addEventListener('DOMContentLoaded', () => {
     formManager.init();
     seoManager.injectStructuredData();
 
-    // Bind event listeners
-    document.getElementById('patternType').addEventListener('change', () => patternManager.updateCountriesAndLabel());
-    document.getElementById('showPatternButton').addEventListener('click', () => formManager.showPattern());
-    document.getElementById('resetFormButton').addEventListener('click', () => formManager.resetForm());
+    // Bind event listeners programmatically to avoid inline event handlers
+    const patternTypeElement = document.getElementById('patternType');
+    const showPatternButton = document.getElementById('showPatternButton');
+    const resetFormButton = document.getElementById('resetFormButton');
 
-    // Attach functions to the global window object (if needed for inline handlers)
+    if (patternTypeElement) {
+        patternTypeElement.addEventListener('change', () => patternManager.updateCountriesAndLabel());
+    }
+
+    if (showPatternButton) {
+        showPatternButton.addEventListener('click', () => formManager.showPattern());
+    }
+
+    if (resetFormButton) {
+        resetFormButton.addEventListener('click', () => formManager.resetForm());
+    }
+
+    // If needed, attach functions to the global window object for legacy inline handlers
     window.updateCountriesAndLabel = () => patternManager.updateCountriesAndLabel();
     window.showPattern = () => formManager.showPattern();
     window.resetForm = () => formManager.resetForm();

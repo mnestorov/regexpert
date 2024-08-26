@@ -1,33 +1,38 @@
 export class TemplateManager {
     constructor() {
         this.templateSelect = document.getElementById('validationTemplates');
-        this.regexDisplay = document.getElementById('regexDisplay');
-        this.explanationAccordion = document.getElementById('explanationAccordion');
-        this.explanationBody = document.getElementById('explanationBody');
     }
 
     init() {
-        this.templateSelect.addEventListener('change', () => this.applyTemplate());
+        if (this.templateSelect) {
+            this.templateSelect.addEventListener('change', () => this.applyTemplate());
+        } else {
+            console.error('Template select element not found.');
+        }
     }
 
     applyTemplate() {
-        const templateSelect = this.templateSelect.value;
+        const templateSelectValue = this.templateSelect.value;
 
-        if (templateSelect) {
+        if (templateSelectValue) {
             fetch('patterns.json')
                 .then(response => response.json())
-                .then(data => this.displayTemplate(data.validationTemplates[templateSelect]))
+                .then(data => this.displayTemplate(data.validationTemplates[templateSelectValue]))
                 .catch(error => console.error('Error loading the template:', error));
         }
     }
 
     displayTemplate(selectedTemplate) {
         if (selectedTemplate) {
-            this.regexDisplay.innerHTML = `<strong>Regex Pattern:</strong> ${selectedTemplate.pattern}`;
-            this.regexDisplay.classList.replace('alert-danger', 'alert-success');
+            const regexDisplay = document.getElementById('regexDisplay');
+            const explanationAccordion = document.getElementById('explanationAccordion');
+            const explanationBody = document.getElementById('explanationBody');
 
-            this.explanationBody.innerHTML = `<strong class="text-warning">Explanation:</strong> ${selectedTemplate.explanation}`;
-            this.explanationAccordion.style.display = 'block';
+            regexDisplay.innerHTML = `<strong>Regex Pattern:</strong> ${selectedTemplate.pattern}`;
+            regexDisplay.classList.replace('alert-danger', 'alert-success');
+
+            explanationBody.innerHTML = `<strong class="text-warning">Explanation:</strong> ${selectedTemplate.explanation}`;
+            explanationAccordion.style.display = 'block';
 
             new PatternManager().handleComplianceWarnings(selectedTemplate.compliance);
         }
