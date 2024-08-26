@@ -22,7 +22,7 @@ export class FormManager {
         let hasError = this.validateFormFields(patternType, country, language);
         if (hasError) return;
 
-        fetch('patterns.json')
+        fetch('./data/patterns.json')
             .then(response => response.json())
             .then(data => {
                 const selectedData = data.patterns[patternType.value][country.value];
