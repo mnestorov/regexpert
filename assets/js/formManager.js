@@ -31,6 +31,7 @@ export class FormManager {
             .catch(error => this.handleError(error));
 
         this.injectDisclaimerText();
+        this.showComplianceWarnings(selectedData.compliance);
     }
 
     validateFormFields(patternType, country, language) {
@@ -45,7 +46,7 @@ export class FormManager {
         });
 
         if (hasError) {
-            this.regexDisplay.textContent = '- Please select - all fields.';
+            this.regexDisplay.textContent = 'Please select all fields.';
             this.regexDisplay.classList.replace('alert-success', 'alert-danger');
         }
         return hasError;
@@ -67,6 +68,9 @@ export class FormManager {
             this.setupExportAndCopy(selectedData.pattern, codeExample, language);
             this.buildExplanation(selectedData.explanation);
         }
+
+        this.injectDisclaimerText();
+        this.showComplianceWarnings(selectedData.compliance);
     }
 
     handleError(error) {
@@ -232,6 +236,25 @@ export class FormManager {
         } else {
             // If it exists, make sure it's visible
             disclaimer.classList.remove('d-none');
+        }
+    }
+
+    showComplianceWarnings(complianceData) {
+        const complianceWarnings = document.getElementById('complianceWarnings');
+
+        if (complianceWarnings) {
+            complianceWarnings.innerHTML = ''; // Clear existing warnings
+
+            if (complianceData) {
+                for (const [law, warning] of Object.entries(complianceData)) {
+                    complianceWarnings.innerHTML += `<div class="alert alert-warning"><strong>${law} Compliance:</strong> ${warning}</div>`;
+                }
+                complianceWarnings.style.display = 'block'; // Show compliance warnings
+            } else {
+                complianceWarnings.style.display = 'none'; // Hide if no warnings
+            }
+        } else {
+            console.error('complianceWarnings element not found in the DOM.');
         }
     }
 }
