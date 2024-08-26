@@ -1,7 +1,7 @@
-import { CookieConsentManager } from './cookieConsentManager.js';
-import { PatternManager } from './patternManager.js';
-import { FormManager } from './formManager.js';
-import { SEOManager } from './seoManager.js';
+import { CookieConsentManager } from './classes/cookieConsentManager.js';
+import { PatternManager } from './classes/patternManager.js';
+import { FormManager } from './classes/formManager.js';
+import { SEOManager } from './classes/seoManager.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const cookieConsentManager = new CookieConsentManager();
