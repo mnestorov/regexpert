@@ -75,16 +75,16 @@ export class FormManager {
 
     displayCodeExample(pattern, language) {
         const codeExamples = {
-            'PHP': `<?php\nif (preg_match('/${regex}/', $input)) {\n    echo 'Valid';\n} else {\n    echo 'Invalid';\n}\n?>`,
-            'JavaScript': `if (/${regex}/.test(input)) {\n    console.log('Valid');\n} else {\n    console.log('Invalid');\n}`,
-            'Python': `import re\n\nif re.match(r'${regex}', input):\n    print('Valid')\nelse:\n    print('Invalid')`,
-            'C#': `using System;\nusing System.Text.RegularExpressions;\n\nclass Program {\n    static void Main() {\n        string input = "...";\n        if (Regex.IsMatch(input, @"${regex}")) {\n            Console.WriteLine("Valid");\n        } else {\n            Console.WriteLine("Invalid");\n        }\n    }\n}`,
-            'Java': `import java.util.regex.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        String input = "...";\n        Pattern pattern = Pattern.compile("${regex}");\n        Matcher matcher = pattern.matcher(input);\n        if (matcher.find()) {\n            System.out.println("Valid");\n        } else {\n            System.out.println("Invalid");\n        }\n    }\n}`,
-            'Ruby': `if /${regex}/.match(input)\n  puts 'Valid'\nelse\n  puts 'Invalid'\nend`,
-            'Rust': `use regex::Regex;\n\nfn main() {\n    let input = "...";\n    let re = Regex::new(r"${regex}").unwrap();\n    if re.is_match(input) {\n        println!("Valid");\n    } else {\n        println!("Invalid");\n    }\n}`,
-            'Go': `package main\n\nimport (\n    "fmt"\n    "regexp"\n)\n\nfunc main() {\n    input := "..." \n    matched, _ := regexp.MatchString("${regex}", input)\n    if matched {\n        fmt.Println("Valid")\n    } else {\n        fmt.Println("Invalid")\n    }\n}`,
-            'Swift': `import Foundation\n\nlet regex = try! NSRegularExpression(pattern: "${regex}")\nlet input = "..." \nlet range = NSRange(location: 0, length: input.utf16.count)\nif regex.firstMatch(in: input, options: [], range: range) != nil {\n    print("Valid")\n} else {\n    print("Invalid")\n}`,
-            'Perl': `if ($input =~ /${regex}/) {\n    print "Valid";\n} else {\n    print "Invalid";\n}`
+            'PHP': `<?php\nif (preg_match('/${pattern}/', $input)) {\n    echo 'Valid';\n} else {\n    echo 'Invalid';\n}\n?>`,
+            'JavaScript': `if (/${pattern}/.test(input)) {\n    console.log('Valid');\n} else {\n    console.log('Invalid');\n}`,
+            'Python': `import re\n\nif re.match(r'${pattern}', input):\n    print('Valid')\nelse:\n    print('Invalid')`,
+            'C#': `using System;\nusing System.Text.RegularExpressions;\n\nclass Program {\n    static void Main() {\n        string input = "...";\n        if (Regex.IsMatch(input, @"${pattern}")) {\n            Console.WriteLine("Valid");\n        } else {\n            Console.WriteLine("Invalid");\n        }\n    }\n}`,
+            'Java': `import java.util.regex.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        String input = "...";\n        Pattern pattern = Pattern.compile("${pattern}");\n        Matcher matcher = pattern.matcher(input);\n        if (matcher.find()) {\n            System.out.println("Valid");\n        } else {\n            System.out.println("Invalid");\n        }\n    }\n}`,
+            'Ruby': `if /${pattern}/.match(input)\n  puts 'Valid'\nelse\n  puts 'Invalid'\nend`,
+            'Rust': `use regex::Regex;\n\nfn main() {\n    let input = "...";\n    let re = Regex::new(r"${pattern}").unwrap();\n    if re.is_match(input) {\n        println!("Valid");\n    } else {\n        println!("Invalid");\n    }\n}`,
+            'Go': `package main\n\nimport (\n    "fmt"\n    "regexp"\n)\n\nfunc main() {\n    input := "..." \n    matched, _ := regexp.MatchString("${pattern}", input)\n    if matched {\n        fmt.Println("Valid")\n    } else {\n        fmt.Println("Invalid")\n    }\n}`,
+            'Swift': `import Foundation\n\nlet regex = try! NSRegularExpression(pattern: "${pattern}")\nlet input = "..." \nlet range = NSRange(location: 0, length: input.utf16.count)\nif regex.firstMatch(in: input, options: [], range: range) != nil {\n    print("Valid")\n} else {\n    print("Invalid")\n}`,
+            'Perl': `if ($input =~ /${pattern}/) {\n    print "Valid";\n} else {\n    print "Invalid";\n}`
         };
 
         const codeExample = codeExamples[language];
