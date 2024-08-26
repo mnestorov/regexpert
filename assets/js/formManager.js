@@ -29,6 +29,8 @@ export class FormManager {
                 this.displayPattern(selectedData, language.value);
             })
             .catch(error => this.handleError(error));
+
+        this.injectDisclaimerText();
     }
 
     validateFormFields(patternType, country, language) {
@@ -88,7 +90,7 @@ export class FormManager {
         };
 
         const codeExample = codeExamples[language];
-    const codeExampleDisplay = document.getElementById('codeExampleDisplay');
+        const codeExampleDisplay = document.getElementById('codeExampleDisplay');
 
         if (codeExampleDisplay) {
             // Display the code example using CodeMirror or plain text
@@ -209,5 +211,27 @@ export class FormManager {
 
         const label = document.getElementById('secondSelectLabel');
         label.textContent = 'Select Country:'; // Reset the label to default
+    }
+
+    injectDisclaimerText() {
+        const disclaimerId = 'disclaimerText';
+        let disclaimer = document.getElementById(disclaimerId);
+        
+        // If the disclaimer doesn't already exist, create and inject it
+        if (!disclaimer) {
+            disclaimer = document.createElement('small');
+            disclaimer.id = disclaimerId;
+            disclaimer.className = 'text-secondary mt-2 d-block';
+            disclaimer.innerHTML = `Please note that these code samples are automatically generated. They are not guaranteed to work. If you find a syntax error, <a href="https://github.com/mnestorov/regex-patterns/issues" target="_blank" class="link-secondary">please submit a bug report</a>.`;
+
+            // Inject the disclaimer after the code example
+            const codeExampleDisplay = document.getElementById('codeExampleDisplay');
+            if (codeExampleDisplay && codeExampleDisplay.parentNode) {
+                codeExampleDisplay.parentNode.insertBefore(disclaimer, codeExampleDisplay.nextSibling);
+            }
+        } else {
+            // If it exists, make sure it's visible
+            disclaimer.classList.remove('d-none');
+        }
     }
 }
