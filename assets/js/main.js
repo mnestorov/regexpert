@@ -17,4 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
     templateManager.init();
     formManager.init();
     seoManager.injectStructuredData();
+
+    // Bind event listeners
+    document.getElementById('patternType').addEventListener('change', () => patternManager.updateCountriesAndLabel());
+    document.getElementById('showPatternButton').addEventListener('click', () => formManager.showPattern());
 });
