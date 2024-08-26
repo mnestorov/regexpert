@@ -18,6 +18,10 @@ document.addEventListener('DOMContentLoaded', () => {
     formManager.init();
     seoManager.injectStructuredData();
 
+    // Initialize the TemplateManager only after the template has been rendered
+    const templateManager = new TemplateManager();
+    templateManager.init();
+
     // Bind event listeners
     document.getElementById('patternType').addEventListener('change', () => patternManager.updateCountriesAndLabel());
     document.getElementById('showPatternButton').addEventListener('click', () => formManager.showPattern());
