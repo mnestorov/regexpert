@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const cookieConsentManager = new CookieConsentManager();
     const patternManager = new PatternManager();
     const templateManager = new TemplateManager();
-    const formManager = new FormManager();
+    const formManager = new FormManager(patternManager);
     const seoManager = new SEOManager();
 
     // Initialize all managers
