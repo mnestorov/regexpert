@@ -19,6 +19,6 @@ export class SEOManager {
         const script = document.createElement('script');
         script.type = 'application/ld+json';
         script.textContent = JSON.stringify(structuredData);
-        document.head.appendChild(script);
+        document.head.appendChild(script);  // Append to the <head> element
     }
 }

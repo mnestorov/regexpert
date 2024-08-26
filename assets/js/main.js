@@ -37,4 +37,23 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         console.error('Element with id="resetFormButton" not found.');
     }
+
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.textContent = JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Regex Pattern Generator",
+        "description": "Easily generate and understand regular expressions for various use cases.",
+        "url": "https://regexpert.dev",
+        "creator": {
+            "@type": "Person",
+            "name": "Martin Nestorov"
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://regexpert.dev"
+        }
+    });
+    document.head.appendChild(script);
 });
