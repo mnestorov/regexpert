@@ -1,6 +1,6 @@
 export class SEOManager {
-    constructor() {
-        this.structuredData = {
+    injectStructuredData() {
+        const structuredData = {
             "@context": "https://schema.org",
             "@type": "WebPage",
             "name": "Regex Pattern Generator",
@@ -15,12 +15,10 @@ export class SEOManager {
                 "@id": "https://regexpert.dev"
             }
         };
-    }
 
-    injectStructuredData() {
         const script = document.createElement('script');
         script.type = 'application/ld+json';
-        script.textContent = JSON.stringify(this.structuredData);
+        script.textContent = JSON.stringify(structuredData);
         document.head.appendChild(script);
     }
 }

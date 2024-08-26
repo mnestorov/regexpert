@@ -17,14 +17,4 @@ document.addEventListener('DOMContentLoaded', () => {
     templateManager.init();
     formManager.init();
     seoManager.injectStructuredData();
-
-    // Bind event listeners
-    document.getElementById('patternType').addEventListener('change', () => patternManager.updateCountriesAndLabel());
-    document.getElementById('showPatternButton').addEventListener('click', () => formManager.showPattern());
-    document.getElementById('resetFormButton').addEventListener('click', () => formManager.resetForm());
-
-    // Attach functions to the global window object (to avoid the ReferenceError)
-    window.updateCountriesAndLabel = () => patternManager.updateCountriesAndLabel();
-    window.showPattern = () => formManager.showPattern();
-    window.resetForm = () => formManager.resetForm();
 });

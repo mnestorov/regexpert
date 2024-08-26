@@ -1,10 +1,6 @@
-import { PatternManager } from './patternManager.js';
-import { TemplateManager } from './templateManager.js';
-
 export class FormManager {
-    constructor() {
-        this.patternManager = new PatternManager();
-        this.templateManager = new TemplateManager();
+    constructor(patternManager) {
+        this.patternManager = patternManager;
         this.regexDisplay = document.getElementById('regexDisplay');
         this.codeExampleDisplay = document.getElementById('codeExampleDisplay');
         this.exportButton = document.getElementById('exportButton');
@@ -19,22 +15,25 @@ export class FormManager {
     }
 
     showPattern() {
-        const patternType = this.patternManager.patternType.value;
-        const country = this.patternManager.countrySelect.value;
-        const language = document.getElementById('programmingLanguage').value;
-        let hasError = this.validateFormFields(patternType, country, language);
+        const patternType = document.getElementById('patternType');
+        const country = document.getElementById('country');
+        const language = document.getElementById('programmingLanguage');
 
+        let hasError = this.validateFormFields(patternType, country, language);
         if (hasError) return;
 
         fetch('patterns.json')
             .then(response => response.json())
-            .then(data => this.displayPattern(data.patterns[patternType][country], language))
+            .then(data => {
+                const selectedData = data.patterns[patternType.value][country.value];
+                this.displayPattern(selectedData, language.value);
+            })
             .catch(error => this.handleError(error));
     }
 
     validateFormFields(patternType, country, language) {
         let hasError = false;
-        [this.patternManager.patternType, this.patternManager.countrySelect, document.getElementById('programmingLanguage')].forEach((field) => {
+        [patternType, country, language].forEach((field) => {
             if (!field.value) {
                 field.style.borderColor = 'red';
                 hasError = true;
@@ -51,6 +50,10 @@ export class FormManager {
     }
 
     displayPattern(selectedData, language) {
+        if (selectedData.compliance) {
+            this.patternManager.handleComplianceWarnings(selectedData.compliance);
+        }
+
         if (typeof selectedData === 'string') {
             this.regexDisplay.innerHTML = `<strong>Notice:</strong> ${selectedData}`;
             this.regexDisplay.classList.replace('alert-success', 'alert-danger-custom');
@@ -60,8 +63,7 @@ export class FormManager {
 
             const codeExample = this.displayCodeExample(selectedData.pattern, language);
             this.setupExportAndCopy(selectedData.pattern, codeExample, language);
-            this.templateManager.explanationBody.innerHTML = this.buildExplanation(selectedData.explanation);
-            this.templateManager.explanationAccordion.style.display = 'block';
+            this.buildExplanation(selectedData.explanation);
         }
     }
 
@@ -84,24 +86,36 @@ export class FormManager {
             'Swift': `import Foundation\n\nlet regex = try! NSRegularExpression(pattern: "${regex}")\nlet input = "..." \nlet range = NSRange(location: 0, length: input.utf16.count)\nif regex.firstMatch(in: input, options: [], range: range) != nil {\n    print("Valid")\n} else {\n    print("Invalid")\n}`,
             'Perl': `if ($input =~ /${regex}/) {\n    print "Valid";\n} else {\n    print "Invalid";\n}`
         };
-        
+
         const codeExample = codeExamples[language];
-        const codeExampleDisplay = document.getElementById('codeExampleDisplay');
-        
-        // Create a textarea to host the code example
-        codeExampleDisplay.innerHTML = `<textarea id="codeMirrorEditor">${codeExample}</textarea>`;
-        
-        // Initialize CodeMirror on the textarea
+        this.codeExampleDisplay.innerHTML = `<textarea id="codeMirrorEditor">${codeExample}</textarea>`;
+
         CodeMirror.fromTextArea(document.getElementById('codeMirrorEditor'), {
             lineNumbers: true,
-            mode: getModeForLanguage(language),
-            theme: 'material-darker', // You can change this to any CodeMirror theme you prefer
+            mode: this.getModeForLanguage(language),
+            theme: 'material-darker',
             readOnly: true,
             tabSize: 4,
             indentWithTabs: true
         });
-        
+
         return codeExample;
+    }
+
+    getModeForLanguage(language) {
+        const modes = {
+            'PHP': 'application/x-httpd-php',
+            'JavaScript': 'javascript',
+            'Python': 'python',
+            'C#': 'text/x-csharp',
+            'Java': 'text/x-java',
+            'Ruby': 'ruby',
+            'Rust': 'rust',
+            'Go': 'go',
+            'Swift': 'swift',
+            'Perl': 'perl'
+        };
+        return modes[language] || 'text/plain';
     }
 
     setupExportAndCopy(pattern, codeExample, language) {
@@ -112,16 +126,17 @@ export class FormManager {
     }
 
     buildExplanation(explanation) {
-        return Object.entries(explanation)
-            .map(([part, explanationText]) => `<strong class="text-warning">${part}:</strong> ${explanationText}<br>`)
-            .join('');
+        this.explanationBody.innerHTML = ''; // Clear previous explanations
+        for (const [part, explanationText] of Object.entries(explanation)) {
+            this.explanationBody.innerHTML += `<strong class="text-warning">${part}:</strong> ${explanationText}<br>`;
+        }
+        this.explanationAccordion.style.display = 'block'; // Show explanation accordion
     }
 
     exportToFile(pattern, codeExample, language) {
         const content = `Regex Pattern:\n${pattern}\n\nCode Example in ${language}:\n${codeExample}`;
         const blob = new Blob([content], { type: 'text/plain' });
         const url = URL.createObjectURL(blob);
-        
         const a = document.createElement('a');
         a.href = url;
         a.download = `regex-pattern.${language.toLowerCase()}.txt`;
@@ -133,20 +148,16 @@ export class FormManager {
 
     copyToClipboard(pattern, codeExample) {
         const content = `Regex Pattern:\n${pattern}\n\n${codeExample}`;
-    
-        // Check if the Clipboard API is supported
+
         if (navigator.clipboard && navigator.clipboard.writeText) {
             navigator.clipboard.writeText(content)
-                .then(() => {
-                    alert('Pattern and code copied to clipboard!');
-                })
+                .then(() => alert('Pattern and code copied to clipboard!'))
                 .catch(err => {
                     console.error('Failed to copy with Clipboard API:', err);
-                    fallbackCopyToClipboard(content); // Use fallback
+                    this.fallbackCopyToClipboard(content);
                 });
         } else {
-            // Use fallback if Clipboard API is not supported
-            fallbackCopyToClipboard(content);
+            this.fallbackCopyToClipboard(content);
         }
     }
 
@@ -167,47 +178,32 @@ export class FormManager {
     }
 
     resetForm() {
-        // Reset the form fields
-    document.getElementById('patternType').value = '';
-    document.getElementById('country').innerHTML = '<option value="">- Please select -</option>';
-    document.getElementById('programmingLanguage').value = '';
+        document.getElementById('patternType').value = '';
+        document.getElementById('country').innerHTML = '<option value="">- Please select -</option>';
+        document.getElementById('programmingLanguage').value = '';
 
-    // Clear the displayed results
-    document.getElementById('regexDisplay').textContent = 'Regex pattern will be displayed here.';
-    document.getElementById('regexDisplay').classList.remove('alert-success', 'alert-danger-custom', 'alert-danger');
-    document.getElementById('regexDisplay').classList.add('alert-success');
-    
-    document.getElementById('codeExampleDisplay').textContent = 'Code example will be displayed here.';
-    document.getElementById('codeExampleDisplay').innerHTML = 'Code example will be displayed here.';
-    document.getElementById('codeExampleDisplay').classList.remove('border-success', 'border-danger');
-    document.getElementById('codeExampleDisplay').classList.add('border-success');
+        this.regexDisplay.textContent = 'Regex pattern will be displayed here.';
+        this.regexDisplay.classList.remove('alert-success', 'alert-danger-custom', 'alert-danger');
+        this.regexDisplay.classList.add('alert-success');
 
-    // Hide buttons and explanation accordion
-    document.getElementById('exportButton').style.display = 'none';
-    document.getElementById('copyButton').style.display = 'none';
-    document.getElementById('explanationAccordion').style.display = 'none';
+        this.codeExampleDisplay.textContent = 'Code example will be displayed here.';
+        this.codeExampleDisplay.classList.remove('border-success', 'border-danger');
+        this.codeExampleDisplay.classList.add('border-success');
 
-    // Hide disclaimer text
-    const disclaimer = document.getElementById('disclaimerText');
-    if (disclaimer) {
-        disclaimer.classList.add('d-none');
-    }
+        this.exportButton.style.display = 'none';
+        this.copyButton.style.display = 'none';
+        this.explanationAccordion.style.display = 'none';
 
-    // Hide compliance warnings
-    const complianceWarnings = document.getElementById('complianceWarnings');
-    if (complianceWarnings) {
-        complianceWarnings.style.display = 'none';
-        complianceWarnings.innerHTML = ''; // Clear the warnings content
-    }
+        const disclaimer = document.getElementById('disclaimerText');
+        if (disclaimer) disclaimer.classList.add('d-none');
 
-    // Reset the label for the second select field
-    const label = document.getElementById('secondSelectLabel');
-    label.textContent = 'Select Country:'; // Reset the label to default
+        const complianceWarnings = document.getElementById('complianceWarnings');
+        if (complianceWarnings) {
+            complianceWarnings.style.display = 'none';
+            complianceWarnings.innerHTML = ''; // Clear the warnings content
+        }
 
-    // Reset visibility of select fields
-    document.getElementById('countryWrapper').style.display = 'block';
-    document.getElementById('validationTemplateSelectWrapper').style.display = 'none';
-    document.getElementById('languageWrapper').style.display = 'block';
-    document.getElementById('showPatternButton').style.display = 'block';
+        const label = document.getElementById('secondSelectLabel');
+        label.textContent = 'Select Country:'; // Reset the label to default
     }
 }

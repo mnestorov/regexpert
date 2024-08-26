@@ -1,8 +1,8 @@
 export class PatternManager {
     constructor() {
         this.patternType = document.getElementById('patternType');
-        this.countrySelect = document.getElementById('country');
         this.label = document.getElementById('secondSelectLabel');
+        this.countrySelect = document.getElementById('country');
         this.complianceWarnings = document.getElementById('complianceWarnings');
     }
 
@@ -13,34 +13,34 @@ export class PatternManager {
     updateCountriesAndLabel() {
         const patternType = this.patternType.value;
 
-        this.label.textContent = patternType === 'commonPatterns' 
-            ? 'Select Dates, Currency, CreditCards or Emails:' 
-            : 'Select Country:';
+        if (patternType === 'commonPatterns') {
+            this.label.textContent = 'Select Dates, Currency, CreditCards or Emails:';
+        } else {
+            this.label.textContent = 'Select Country:';
+        }
 
         if (patternType) {
             fetch('patterns.json')
                 .then(response => response.json())
-                .then(data => this.populateCountryOptions(data, patternType))
+                .then(data => {
+                    let options = '<option value="">- Please select -</option>';
+                    const patterns = data.patterns[patternType];
+                    const items = Object.keys(patterns);
+                    items.forEach(item => {
+                        options += `<option value="${item}">${item}</option>`;
+                    });
+                    this.countrySelect.innerHTML = options;
+
+                    if (patternType === 'commonPatterns') {
+                        this.countrySelect.addEventListener('change', () => this.handleComplianceWarnings());
+                    }
+                })
                 .catch(error => {
                     console.error('Error fetching patterns:', error);
                     this.countrySelect.innerHTML = '<option value="">Error loading options</option>';
                 });
         } else {
             this.countrySelect.innerHTML = '<option value="">- Please select - pattern type first</option>';
-        }
-    }
-
-    populateCountryOptions(data, patternType) {
-        let options = '<option value="">- Please select -</option>';
-        const patterns = data.patterns[patternType];
-        const items = Object.keys(patterns);
-        items.forEach(item => {
-            options += `<option value="${item}">${item}</option>`;
-        });
-        this.countrySelect.innerHTML = options;
-
-        if (patternType === 'commonPatterns') {
-            this.countrySelect.addEventListener('change', () => this.handleComplianceWarnings());
         }
     }
 
