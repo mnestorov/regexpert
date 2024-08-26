@@ -20,7 +20,7 @@ export class PatternManager {
         }
 
         if (patternType) {
-            fetch('patterns.json')
+            fetch('data/patterns.json')
                 .then(response => response.json())
                 .then(data => {
                     let options = '<option value="">- Please select -</option>';
