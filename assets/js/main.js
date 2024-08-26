@@ -21,4 +21,5 @@ document.addEventListener('DOMContentLoaded', () => {
     // Bind event listeners
     document.getElementById('patternType').addEventListener('change', () => patternManager.updateCountriesAndLabel());
     document.getElementById('showPatternButton').addEventListener('click', () => formManager.showPattern());
+    document.getElementById('resetFormButton').addEventListener('click', () => formManager.resetForm());
 });
