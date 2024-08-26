@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/theme/material-darker.min.css">
     <link rel="stylesheet" href="assets/css/app.css">
-    <!--
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
@@ -29,8 +28,7 @@
                 "@id": "https://regexpert.dev"
             }
         }
-    </script>
-    -->
+        </script>
 </head>
 <body>
     <div class="page-container">
@@ -88,10 +86,10 @@
                     </select>
                 </div>
                 <div>
-                    <button type="button" class="btn btn-primary">
+                    <button type="button" onclick="showPattern()" class="btn btn-primary">
                         <i class="bi bi-eye"></i> Show Pattern and Code
                     </button>
-                    <button type="button" class="btn btn-outline-danger ms-2">
+                    <button type="button" onclick="resetForm()" class="btn btn-outline-danger ms-2">
                         <i class="bi bi-arrow-clockwise"></i> Reset
                     </button>
                 </div>
@@ -180,7 +178,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/go/go.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/swift/swift.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/perl/perl.min.js"></script>
-    <!--<script src="assets/js/app.js"></script>-->
-    <script type="module" src="assets/js/main.js"></script>
+    <script src="assets/js/app.js"></script>
 </body>
 </html>
