@@ -100,4 +100,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('patternType').addEventListener('change', () => patternManager.updateCountriesAndLabel());
     document.getElementById('showPatternButton').addEventListener('click', () => formManager.showPattern());
     document.getElementById('resetFormButton').addEventListener('click', () => formManager.resetForm());
+
+    // Register the service worker
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/service-worker.js')
+                .then((registration) => {
+                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                }, (error) => {
+                    console.log('ServiceWorker registration failed: ', error);
+                });
+        });
+    }
 });
