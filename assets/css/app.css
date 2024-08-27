@@ -45,13 +45,17 @@ footer .container  {
     color: #ffffff;
 }
 
+.text-secondary {
+    color: rgb(151 161 171) !important;
+}
+
 .text-bg-dark {
     background-color: #121212 !important;
 }
 
 .alert-danger {
     background-color: #f8d7da;
-    color: #721c24;
+    color: #dc3545;
     border-color: #f5c6cb;
 }
 
@@ -71,7 +75,7 @@ input, select {
 }
 
 input:invalid, select:invalid {
-    border-color: red;
+    border-color: #dc3545;
 }
 
 #actions .btn {
@@ -82,6 +86,7 @@ input:invalid, select:invalid {
     margin-right: 5px;
 }
 
+/* Cookie Consent */
 .cookie-consent-banner {
     display: none; /* Initially hidden */
     position: fixed;
@@ -99,9 +104,13 @@ input:invalid, select:invalid {
 
 /* Custom CodeMirror styles */
 .cm-s-material-darker.CodeMirror {
-    background-color: #212121;
+    background-color: #121212;
     border: 1px dotted rgb(25, 135, 84);
     border-radius: 5px;
     padding: 15px 0;
     color: #eff;
+}
+
+.CodeMirror-gutter.CodeMirror-linenumbers {
+    background-color: #121212;
 }

@@ -90,7 +90,7 @@ export class FormManager {
         let hasError = false;
         [patternType, country, language].forEach((field) => {
             if (!field.value) {
-                field.style.borderColor = 'red';
+                field.style.borderColor = '#dc3545';
                 hasError = true;
             } else {
                 field.style.borderColor = '';
