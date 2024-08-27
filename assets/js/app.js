@@ -11,16 +11,15 @@ document.addEventListener('DOMContentLoaded', async () => {
         Handlebars.registerPartial(name, template);
     };
 
-    await loadPartial('head', './templates/_partials/head.hbs');
+    await loadPartial('metaInfo', './templates/_partials/metaInfo.hbs');
     await loadPartial('header', './templates/header.hbs');
     await loadPartial('content', './templates/content.hbs');
     await loadPartial('footer', './templates/footer.hbs');
     await loadPartial('cookieConsent', './templates/_partials/cookieConsent.hbs');
 
-    // Load main template
-    const response = await fetch('./templates/main.hbs');
-    const mainTemplateSource = await response.text();
-    const mainTemplate = Handlebars.compile(mainTemplateSource);
+    // Compile and render the meta partial
+    const metaTemplateSource = document.getElementById('meta-template').innerHTML;
+    const metaTemplate = Handlebars.compile(metaTemplateSource);
 
     // Define the data you want to pass to the template
     const context = {
@@ -81,6 +80,15 @@ document.addEventListener('DOMContentLoaded', async () => {
             contributions: 'Contributions are welcome so feel free to fork the project on GitHub and submit a pull request. Your help in improving this tool is greatly appreciated.'
         }
     };
+
+    // Render and insert the meta content
+    const metaHtml = metaTemplate(context);
+    document.meta.insertAdjacentHTML('beforeend', metaHtml);
+    
+    // Load main template
+    const response = await fetch('./templates/main.hbs');
+    const mainTemplateSource = await response.text();
+    const mainTemplate = Handlebars.compile(mainTemplateSource);
 
     // Render the template with the context data
     const html = mainTemplate(context);
