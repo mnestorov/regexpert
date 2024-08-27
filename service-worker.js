@@ -2,7 +2,6 @@ const CACHE_NAME = 'regex-pattern-generator-v1';
 const urlsToCache = [
     '/',
     '/index.html',
-    '/templates/head.hbs',
     '/assets/favicon.ico',
     '/assets/css/app.css',
     'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css',

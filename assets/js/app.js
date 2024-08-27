@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Render and insert the meta content
     const metaHtml = metaTemplate(context);
-    document.meta.insertAdjacentHTML('beforeend', metaHtml);
+    document.head.insertAdjacentHTML('beforeend', metaHtml);
     
     // Load main template
     const response = await fetch('./templates/main.hbs');
