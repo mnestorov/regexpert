@@ -1,0 +1,36 @@
+<!-- Footer -->
+<footer class="text-center text-md-start mt-4 pt-4">
+    <div class="container">
+        <div class="row">
+            <!-- Column 1: Regex Pattern Generator -->
+            <div class="col-12 col-md-6 mb-3">
+                <h6 class="lead py-2">{{footer.title}}</h6>
+                <p class="text-secondary">{{footer.description}}</p>
+                <p class="text-secondary">{{footer.support}}</p>
+            </div>
+            <!-- Column 2: Project Links -->
+            <div class="col col-md-3 mb-3">
+                <h6 class="lead py-2">{{footer.projectLinksTitle}}</h6>
+                <ul class="list-unstyled">
+                    {{#each footer.projectLinks}}
+                        <li><a href="{{this.url}}" target="_blank" class="link-secondary text-decoration-none">{{this.label}}</a></li>
+                    {{/each}}
+                </ul>
+            </div>
+            <!-- Column 3: Useful Links -->
+            <div class="col col-md-3 mb-3">
+                <h6 class="lead py-2">{{footer.usefulLinksTitle}}</h6>
+                <ul class="list-unstyled">
+                    {{#each footer.usefulLinks}}
+                        <li><a href="{{this.url}}" target="_blank" class="link-secondary text-decoration-none">{{this.label}}</a></li>
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container rounded-0 text-center">
+        <hr class="text-secondary">
+        <p class="my-3">&copy; 2024 - Developed by <a href="{{developer.url}}" target="_blank" class="link-light">{{developer.name}}</a></p>
+        <p class="text-secondary"><small>{{developer.contributions}}</small></p>
+    </div>
+</footer>

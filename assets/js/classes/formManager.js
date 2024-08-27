@@ -5,8 +5,12 @@ export class FormManager {
         this.codeExampleDisplay = document.getElementById('codeExampleDisplay');
         this.exportButton = document.getElementById('exportButton');
         this.copyButton = document.getElementById('copyButton');
+        this.regexAccordion = document.getElementById('regexAccordion');
         this.explanationAccordion = document.getElementById('explanationAccordion');
-        this.explanationBody = document.getElementById('explanationBody');
+        this.codeExampleAccordion = document.getElementById('codeExampleAccordion');
+        this.explanationDisplay = document.getElementById('explanationDisplay');
+        this.alertMessage = document.getElementById('alertMessage');
+        this.noticeMessage = document.getElementById('noticeMessage');
     }
 
     init() {
@@ -20,18 +24,66 @@ export class FormManager {
         const language = document.getElementById('programmingLanguage');
 
         let hasError = this.validateFormFields(patternType, country, language);
-        if (hasError) return;
+        if (hasError) {
+            this.hideAllMessagesExcept('alert');
+            return;
+        }
 
         fetch('./data/patterns.json')
             .then(response => response.json())
             .then(data => {
                 const selectedData = data.patterns[patternType.value][country.value];
-                this.displayPattern(selectedData, language.value);
+
+                if (typeof selectedData === 'string' || !selectedData.explanation) {
+                    this.showNoticeMessage(selectedData);
+                    this.hideAllMessagesExcept('notice');
+                    this.hideAccordions();
+                } else {
+                    this.displayPattern(selectedData, language.value);
+                    this.hideNoticeMessage();
+                    this.showAccordions();
+                }
             })
             .catch(error => this.handleError(error));
+    }
 
-        this.injectDisclaimerText();
-        this.showComplianceWarnings(selectedData.compliance);
+    hideAccordions() {
+        this.regexAccordion.style.display = 'none';
+        this.codeExampleAccordion.style.display = 'none';
+        this.explanationAccordion.style.display = 'none';
+    }
+
+    showAccordions() {
+        this.regexAccordion.style.display = 'block';
+        this.codeExampleAccordion.style.display = 'block';
+        this.explanationAccordion.style.display = 'block';
+    }
+
+    showNoticeMessage(message) {
+        this.noticeMessage.innerHTML = `<strong>Notice:</strong> ${message}`;
+        this.noticeMessage.classList.remove('d-none');
+    }
+
+    hideNoticeMessage() {
+        this.noticeMessage.classList.add('d-none');
+    }
+
+    showAlertMessage(message) {
+        this.alertMessage.innerHTML = `<strong>Error:</strong> ${message}`;
+        this.alertMessage.classList.remove('d-none');
+    }
+
+    hideAlertMessage() {
+        this.alertMessage.classList.add('d-none');
+    }
+
+    hideAllMessagesExcept(type) {
+        if (type !== 'alert') {
+            this.hideAlertMessage();
+        }
+        if (type !== 'notice') {
+            this.hideNoticeMessage();
+        }
     }
 
     validateFormFields(patternType, country, language) {
@@ -46,36 +98,29 @@ export class FormManager {
         });
 
         if (hasError) {
-            this.regexDisplay.textContent = 'Please select all fields.';
-            this.regexDisplay.classList.replace('alert-success', 'alert-danger');
+            this.showAlertMessage('Please select all fields.');
+        } else {
+            this.hideAlertMessage();
         }
+
         return hasError;
     }
 
     displayPattern(selectedData, language) {
-        if (selectedData.compliance) {
-            this.patternManager.handleComplianceWarnings(selectedData.compliance);
-        }
+        this.regexDisplay.innerHTML = `${selectedData.pattern}`;
+        this.regexDisplay.classList.replace('alert-danger', 'alert-success');
 
-        if (typeof selectedData === 'string') {
-            this.regexDisplay.innerHTML = `<strong>Notice:</strong> ${selectedData}`;
-            this.regexDisplay.classList.replace('alert-success', 'alert-danger-custom');
-        } else {
-            this.regexDisplay.innerHTML = `<strong>Regex Pattern:</strong> ${selectedData.pattern}`;
-            this.regexDisplay.classList.replace('alert-danger', 'alert-success');
-
-            const codeExample = this.displayCodeExample(selectedData.pattern, language);
-            this.setupExportAndCopy(selectedData.pattern, codeExample, language);
-            this.buildExplanation(selectedData.explanation);
-        }
+        const codeExample = this.displayCodeExample(selectedData.pattern, language);
+        this.setupExportAndCopy(selectedData.pattern, codeExample, language);
+        this.buildExplanation(selectedData.explanation);
 
         this.injectDisclaimerText();
         this.showComplianceWarnings(selectedData.compliance);
     }
 
     handleError(error) {
-        this.regexDisplay.textContent = 'Failed to load patterns.';
-        this.regexDisplay.classList.replace('alert-success', 'alert-danger');
+        this.hideAllMessagesExcept('alert');
+        this.showAlertMessage('Failed to load patterns.');
         console.error('Error loading the patterns:', error);
     }
 
@@ -136,9 +181,9 @@ export class FormManager {
     }
 
     buildExplanation(explanation) {
-        this.explanationBody.innerHTML = ''; // Clear previous explanations
+        this.explanationDisplay.innerHTML = ''; // Clear previous explanations
         for (const [part, explanationText] of Object.entries(explanation)) {
-            this.explanationBody.innerHTML += `<strong class="text-warning">${part}:</strong> ${explanationText}<br>`;
+            this.explanationDisplay.innerHTML += `<strong class="text-warning">${part}:</strong> ${explanationText}<br>`;
         }
         this.explanationAccordion.style.display = 'block'; // Show explanation accordion
     }
@@ -202,7 +247,10 @@ export class FormManager {
 
         this.exportButton.style.display = 'none';
         this.copyButton.style.display = 'none';
-        this.explanationAccordion.style.display = 'none';
+        this.hideAccordions();
+
+        this.hideAlertMessage();
+        this.hideNoticeMessage();
 
         const disclaimer = document.getElementById('disclaimerText');
         if (disclaimer) disclaimer.classList.add('d-none');
@@ -225,8 +273,8 @@ export class FormManager {
         if (!disclaimer) {
             disclaimer = document.createElement('small');
             disclaimer.id = disclaimerId;
-            disclaimer.className = 'text-secondary mt-2 d-block';
-            disclaimer.innerHTML = `Please note that these code samples are automatically generated. They are not guaranteed to work. If you find a syntax error, <a href="https://github.com/mnestorov/regex-patterns/issues" target="_blank" class="link-secondary">please submit a bug report</a>.`;
+            disclaimer.className = 'text-secondary text-bg-dark px-3 pb-3 d-block';
+            disclaimer.innerHTML = `Please note that these code examples are automatically generated. They are not guaranteed to work. If you find a syntax error or any other error, <a href="https://github.com/mnestorov/regex-patterns/issues" target="_blank" class="link-secondary">please submit a bug report</a>.`;
 
             // Inject the disclaimer after the code example
             const codeExampleDisplay = document.getElementById('codeExampleDisplay');
