@@ -25,10 +25,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Define the data you want to pass to the template
     const context = {
         homeUrl: './',
-        pageTitle: 'Regex Pattern Generator | Generate & Understand Regular Expressions',
+        pageTitle: 'RegExpert | Generate & Understand Regular Expressions',
         metaDescription: 'Use the Regex Pattern Generator to easily create and understand regular expressions for phone numbers, postal codes, VAT numbers, and more. Supports multiple programming languages.',
         metaKeywords: 'regex, regular expressions, pattern generator, phone number regex, postal code regex, VAT regex, regex explanation, code generator',
-        title: 'Regex Pattern Generatorrr',
+        title: 'Regex Pattern Generator',
         subtitle: 'for the European countries',
         githubUrl: 'https://github.com/mnestorov/regex-patterns',
         leadDescription: 'Designed to help developers easily generate and understand regular expressions for various use cases.',
