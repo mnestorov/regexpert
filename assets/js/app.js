@@ -83,7 +83,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     };
 
     // Render the template with the context data
-    document.write(mainTemplate(context));
+    const html = mainTemplate(context);
+
+    // Insert the rendered HTML into the body
+    document.body.innerHTML = html;
 
     // Initialize all managers after content is rendered
     const cookieConsentManager = new CookieConsentManager();
