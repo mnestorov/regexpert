@@ -2,6 +2,8 @@ import { CookieConsentManager } from './classes/cookieConsentManager.js';
 import { PatternManager } from './classes/patternManager.js';
 import { FormManager } from './classes/formManager.js';
 import { SEOManager } from './classes/seoManager.js';
+import { QRCodeManager } from './classes/qrCodeManager.js';
+import { SharingButtonsManager } from './classes/sharingButtonsManager.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
     // Load partials
@@ -38,6 +40,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         countryPlaceholder: '- Please select -',
         programmingLanguageLabel: 'Select Programming Language:',
         programmingLanguagePlaceholder: '- Please select -',
+        sharePatternText: 'Share Pattern:',
         showPatternButtonText: 'Show Pattern and Code',
         resetButtonText: 'Reset',
         regexDisplayHeaderText: 'Regex Pattern',
@@ -106,6 +109,30 @@ document.addEventListener('DOMContentLoaded', async () => {
     patternManager.init();
     formManager.init();
     seoManager.injectStructuredData();
+
+    // QR Code and Sharing Buttons integration
+    const qrCodeManager = new QRCodeManager('qrCodeContainer');
+    const sharingButtonsManager = new SharingButtonsManager('https://regexpert.dev'); // URL to be dynamic based on generated pattern
+
+    document.getElementById('showPatternButton').addEventListener('click', () => {
+        const data = "https://regexpert.dev"; // replace with the actual data you want to encode
+        qrCodeManager.generate(data);
+    });
+
+    // Parse URL parameters and auto-fill the form if parameters are present
+    const urlParams = new URLSearchParams(window.location.search);
+    const patternType = urlParams.get('patternType');
+    const country = urlParams.get('country');
+    const language = urlParams.get('language');
+
+    if (patternType && country && language) {
+        document.getElementById('patternType').value = patternType;
+        patternManager.updateCountriesAndLabel(patternType).then(() => {
+            document.getElementById('country').value = country;
+            document.getElementById('programmingLanguage').value = language;
+            formManager.showPattern();
+        });
+    }
 
     // Bind event listeners programmatically
     document.getElementById('patternType').addEventListener('change', () => patternManager.updateCountriesAndLabel());

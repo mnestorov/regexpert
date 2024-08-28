@@ -6,112 +6,129 @@
     <hr>
 </div>
 <div class="container pb-5 mt-4 content">
-    <form>
-        <!-- Alert Message for Errors -->
-        <div id="alertMessage" class="alert alert-danger d-none" role="alert">
-            {{alertMessageText}}
-        </div>
+    <div class="row">
+        <div id="patternSection" class="col-12">
+            <form>
+                <!-- Alert Message for Errors -->
+                <div id="alertMessage" class="alert alert-danger d-none" role="alert">
+                    {{alertMessageText}}
+                </div>
 
-        <div class="mb-3">
-            <label for="patternType" class="form-label">{{patternTypeLabel}}</label>
-            <select id="patternType" class="form-select">
-                <option value="">{{patternTypePlaceholder}}</option>
-                {{#each patternTypes}}
-                    <option value="{{this.value}}">{{this.label}}</option>
-                {{/each}}
-            </select>
-        </div>
+                <div class="mb-3">
+                    <label for="patternType" class="form-label">{{patternTypeLabel}}</label>
+                    <select id="patternType" class="form-select">
+                        <option value="">{{patternTypePlaceholder}}</option>
+                        {{#each patternTypes}}
+                            <option value="{{this.value}}">{{this.label}}</option>
+                        {{/each}}
+                    </select>
+                </div>
 
-        <div class="mb-3">
-            <label id="secondSelectLabel" for="country" class="form-label">{{countryLabel}}</label>
-            <select id="country" class="form-select">
-                <option value="">{{countryPlaceholder}}</option>
-            </select>
-        </div>
+                <div class="mb-3">
+                    <label id="secondSelectLabel" for="country" class="form-label">{{countryLabel}}</label>
+                    <select id="country" class="form-select">
+                        <option value="">{{countryPlaceholder}}</option>
+                    </select>
+                </div>
 
-        <div class="mb-3">
-            <label for="programmingLanguage" class="form-label">{{programmingLanguageLabel}}</label>
-            <select id="programmingLanguage" class="form-select">
-                <option value="">{{programmingLanguagePlaceholder}}</option>
-                {{#each programmingLanguages}}
-                    <option value="{{this}}">{{this}}</option>
-                {{/each}}
-            </select>
+                <div class="mb-3">
+                    <label for="programmingLanguage" class="form-label">{{programmingLanguageLabel}}</label>
+                    <select id="programmingLanguage" class="form-select">
+                        <option value="">{{programmingLanguagePlaceholder}}</option>
+                        {{#each programmingLanguages}}
+                            <option value="{{this}}">{{this}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                
+                <div>
+                    <button id="showPatternButton" type="button" class="btn btn-outline-primary">
+                        <i class="bi bi-eye"></i> {{showPatternButtonText}}
+                    </button>
+                    <button id="resetFormButton" type="button" class="btn btn-outline-danger ms-2">
+                        <i class="bi bi-arrow-clockwise"></i> {{resetButtonText}}
+                    </button>
+                </div>
+            </form>
         </div>
-        
-        <div>
-            <button id="showPatternButton" type="button" class="btn btn-primary">
-                <i class="bi bi-eye"></i> {{showPatternButtonText}}
-            </button>
-            <button id="resetFormButton" type="button" class="btn btn-outline-danger ms-2">
-                <i class="bi bi-arrow-clockwise"></i> {{resetButtonText}}
-            </button>
-        </div>
-    </form>
-
-    <!-- Alert Message for Notice -->
-    <div id="noticeMessage" class="alert alert-warning d-none mt-3" role="alert">
-        <!-- Dynamic content will be injected here -->
-    </div>
-
-    <!-- Regex Display -->
-    <div class="accordion mt-3" id="regexAccordion" style="display: none;">
-        <div class="accordion-item border border-3 border-success rounded">
-            <h2 class="accordion-header" id="headingRegex">
-                <button class="accordion-button text-bg-success shadow-none rounded-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRegex" aria-expanded="true" aria-controls="collapseRegex">
-                    <strong><i class="bi bi-regex fs-5"></i> {{regexDisplayHeaderText}}</strong>
-                </button>
-            </h2>
-            <div id="collapseRegex" class="accordion-collapse collapse show" aria-labelledby="headingRegex" data-bs-parent="#accordionExample">
-                <div id="regexDisplay" class="accordion-body text-bg-dark">
-                    <!-- Regex content will be dynamically generated here -->
+        <div id="shareSection" class="col-lg-4 col-12 text-center mt-lg-0 mt-xl-0 mt-4" style="display: none;">
+            <!-- QR Code and Sharing Buttons -->
+            <label class="form-label">{{sharePatternText}}</label>
+            <div>
+                <canvas id="qrCodeContainer" class="mt-3 rounded" style="display: none;"></canvas>
+                <div id="sharingButtons" class="btn-group my-3" role="group" aria-label="Sharing buttons" style="display: none;">
+                    <button id="facebookShareButton" class="btn btn-outline-primary"><i class="bi bi-facebook"></i></button>
+                    <button id="twitterShareButton" class="btn btn-outline-primary"><i class="bi bi-twitter"></i></button>
+                    <button id="linkedinShareButton" class="btn btn-outline-primary"><i class="bi bi-linkedin"></i></button>
                 </div>
             </div>
         </div>
-    </div>
-    
-    <!-- Explanation Display -->
-    <div class="accordion mt-3" id="explanationAccordion" style="display: none;">
-        <div class="accordion-item border border-3 border-warning rounded">
-            <h2 class="accordion-header" id="headingExplanation">
-                <button class="accordion-button text-bg-warning shadow-none rounded-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExplanation" aria-expanded="true" aria-controls="collapseExplanation">
-                    <strong><i class="bi bi-info-circle fs-5"></i> {{explanationHeader}}</strong>
-                </button>
-             </h2>
-            <div id="collapseExplanation" class="accordion-collapse collapse show" aria-labelledby="headingExplanation" data-bs-parent="#explanationAccordion">
-                <div id="explanationDisplay" class="accordion-body text-bg-dark">
-                    <!-- Explanation content will be dynamically generated here -->
+        <div class="col-12">
+            <!-- Alert Message for Notice -->
+            <div id="noticeMessage" class="alert alert-warning d-none mt-3" role="alert">
+                <!-- Dynamic content will be injected here -->
+            </div>
+
+            <!-- Regex Display -->
+            <div class="accordion mt-3" id="regexAccordion" style="display: none;">
+                <div class="accordion-item border border-3 border-success rounded">
+                    <h2 class="accordion-header" id="headingRegex">
+                        <button class="accordion-button text-bg-success shadow-none rounded-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRegex" aria-expanded="true" aria-controls="collapseRegex">
+                            <strong><i class="bi bi-regex fs-5"></i> {{regexDisplayHeaderText}}</strong>
+                        </button>
+                    </h2>
+                    <div id="collapseRegex" class="accordion-collapse collapse show" aria-labelledby="headingRegex" data-bs-parent="#accordionExample">
+                        <div id="regexDisplay" class="accordion-body text-bg-dark">
+                            <!-- Regex content will be dynamically generated here -->
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <!-- Code Example Display -->
-    <div class="accordion mt-3" id="codeExampleAccordion" style="display: none;">
-        <div class="accordion-item border border-3 border-success rounded">
-            <h2 class="accordion-header" id="headingCode">
-                <button class="accordion-button text-bg-success shadow-none rounded-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCode" aria-expanded="true" aria-controls="collapseCode">
-                    <strong><i class="bi bi-code-slash fs-5"></i> {{codeExampleHeaderText}}</strong>
-                </button>
-            </h2>
-            <div id="collapseCode" class="accordion-collapse collapse show" aria-labelledby="headingCode" data-bs-parent="#accordionExample">
-                <div id="codeExampleDisplay" class="accordion-body text-bg-dark">
-                    <!-- Code example will be dynamically generated here -->
+            
+            <!-- Explanation Display -->
+            <div class="accordion mt-3" id="explanationAccordion" style="display: none;">
+                <div class="accordion-item border border-3 border-warning rounded">
+                    <h2 class="accordion-header" id="headingExplanation">
+                        <button class="accordion-button text-bg-warning shadow-none rounded-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExplanation" aria-expanded="true" aria-controls="collapseExplanation">
+                            <strong><i class="bi bi-info-circle fs-5"></i> {{explanationHeader}}</strong>
+                        </button>
+                    </h2>
+                    <div id="collapseExplanation" class="accordion-collapse collapse show" aria-labelledby="headingExplanation" data-bs-parent="#explanationAccordion">
+                        <div id="explanationDisplay" class="accordion-body text-bg-dark">
+                            <!-- Explanation content will be dynamically generated here -->
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <!-- Compliance Warnings Display -->
-    <div id="complianceWarnings" class="mt-3"></div>
-    
-    <!-- Export and Copy Buttons -->
-    <div id="actions" class="mt-3">
-        <button id="exportButton" type="button" class="btn btn-success" style="display: none;">
-            <i class="bi bi-download"></i> {{exportButtonText}}
-        </button>
-        <button id="copyButton" type="button" class="btn btn-success" style="display: none;">
-            <i class="bi bi-clipboard"></i> {{copyButtonText}}
-        </button>
+            <!-- Code Example Display -->
+            <div class="accordion mt-3" id="codeExampleAccordion" style="display: none;">
+                <div class="accordion-item border border-3 border-success rounded">
+                    <h2 class="accordion-header" id="headingCode">
+                        <button class="accordion-button text-bg-success shadow-none rounded-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCode" aria-expanded="true" aria-controls="collapseCode">
+                            <strong><i class="bi bi-code-slash fs-5"></i> {{codeExampleHeaderText}}</strong>
+                        </button>
+                    </h2>
+                    <div id="collapseCode" class="accordion-collapse collapse show" aria-labelledby="headingCode" data-bs-parent="#accordionExample">
+                        <div id="codeExampleDisplay" class="accordion-body text-bg-dark">
+                            <!-- Code example will be dynamically generated here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Compliance Warnings Display -->
+            <div id="complianceWarnings" class="mt-3"></div>
+            
+            <!-- Export and Copy Buttons -->
+            <div id="actions" class="mt-3">
+                <button id="exportButton" type="button" class="btn btn-success" style="display: none;">
+                    <i class="bi bi-download"></i> {{exportButtonText}}
+                </button>
+                <button id="copyButton" type="button" class="btn btn-success" style="display: none;">
+                    <i class="bi bi-clipboard"></i> {{copyButtonText}}
+                </button>
+            </div>
+        </div>
     </div>
 </div>

@@ -82,8 +82,13 @@ input:invalid, select:invalid {
     margin-right: 10px;
 }
 
-.bi {
+.bi .bi-eye,
+.bi .bi-download {
     margin-right: 5px;
+}
+
+canvas {
+    margin: 0 auto;
 }
 
 /* Cookie Consent */

@@ -1,3 +1,5 @@
+import { QRCodeManager } from './qrCodeManager.js';
+
 export class FormManager {
     constructor(patternManager) {
         this.patternManager = patternManager;
@@ -11,6 +13,10 @@ export class FormManager {
         this.explanationDisplay = document.getElementById('explanationDisplay');
         this.alertMessage = document.getElementById('alertMessage');
         this.noticeMessage = document.getElementById('noticeMessage');
+        this.patternSection = document.getElementById('patternSection');
+        this.shareSection = document.getElementById('shareSection');
+        this.qrCodeContainer = document.getElementById('qrCodeContainer');
+        this.sharingButtons = document.getElementById('sharingButtons');
     }
 
     init() {
@@ -38,13 +44,45 @@ export class FormManager {
                     this.showNoticeMessage(selectedData);
                     this.hideAllMessagesExcept('notice');
                     this.hideAccordions();
+                    this.hideShareSection();
                 } else {
                     this.displayPattern(selectedData, language.value);
                     this.hideNoticeMessage();
                     this.showAccordions();
+                    this.showShareSection();
+                    this.generateQrAndSharingLinks(patternType.value, country.value, language.value);
                 }
             })
             .catch(error => this.handleError(error));
+    }
+
+    generateQrAndSharingLinks(patternType, country, language) {
+        const urlParams = new URLSearchParams({
+            patternType: patternType,
+            country: country,
+            language: language
+        });
+        const generatedUrl = `${window.location.origin}${window.location.pathname}?${urlParams.toString()}`;
+
+        const qrCodeManager = new QRCodeManager('qrCodeContainer');
+        qrCodeManager.generate(generatedUrl);
+
+        this.setupSharingButtons(generatedUrl);
+
+        this.qrCodeContainer.style.display = 'block ';
+        this.sharingButtons.style.display = 'inline-flex';
+    }
+
+    setupSharingButtons(url) {
+        document.getElementById('facebookShareButton').onclick = () => {
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
+        };
+        document.getElementById('twitterShareButton').onclick = () => {
+            window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}`, '_blank');
+        };
+        document.getElementById('linkedinShareButton').onclick = () => {
+            window.open(`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(url)}`, '_blank');
+        };
     }
 
     hideAccordions() {
@@ -232,6 +270,17 @@ export class FormManager {
         document.body.removeChild(textArea);
     }
 
+    showShareSection() {
+        this.shareSection.style.display = 'block';
+        this.patternSection.classList.add('col-lg-8');
+    }
+
+    hideShareSection() {
+        this.shareSection.style.display = 'none';
+        this.patternSection.classList.remove('col-lg-8');
+        this.patternSection.classList.add('col-12');
+    }
+
     resetForm() {
         document.getElementById('patternType').value = '';
         document.getElementById('country').innerHTML = '<option value="">- Please select -</option>';
@@ -263,6 +312,12 @@ export class FormManager {
 
         const label = document.getElementById('secondSelectLabel');
         label.textContent = 'Select Country:'; // Reset the label to default
+
+        // Hide QR code and sharing buttons
+        //this.qrCodeContainer.style.display = 'none';
+        //this.sharingButtons.style.display = 'none';
+
+        this.hideShareSection();
     }
 
     injectDisclaimerText() {
