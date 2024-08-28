@@ -38,8 +38,5 @@
   "homepage": "https://github.com/mnestorov/regex-patterns#readme",
   "devDependencies": {
     "http-server": "^14.1.1"
-  },
-  "dependencies": {
-    "qrcode": "^1.5.4"
   }
 }
