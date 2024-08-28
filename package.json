@@ -1,7 +1,7 @@
 {
-  "name": "regex-pattern-generator",
+  "name": "regexpert",
   "version": "1.0.0",
-  "description": "Use the Regex Pattern Generator to easily create and understand regular expressions for phone numbers, postal codes, VAT numbers, and more. Supports multiple programming languages.",
+  "description": "Use the RegexExpert - Generate & Understand Regular Expressions to easily create and understand regular expressions for phone numbers, postal codes, VAT numbers, and more. Supports multiple programming languages.",
   "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
