@@ -16,7 +16,7 @@ Your support is greatly appreciated and will help ensure the project's continued
 
 ## Overview
 
-**RegexExpert - Generate & Understand Regular Expressions** is designed to help developers easily generate and understand regular expressions for various use cases.
+**RegExpert - Generate & Understand Regular Expressions** is designed to help developers easily generate and understand regular expressions for various use cases.
 
 Select a pattern type, country, and programming language to see the corresponding regular expression and code example. You can also view a detailed explanation of how the regex works and export or copy the code for your project.
 
