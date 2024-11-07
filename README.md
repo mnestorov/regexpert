@@ -4,21 +4,22 @@
 
 ## Support The Project
 
-Your support is greatly appreciated and will help ensure the project's continued development and improvement. Thank you for being a part of the community!
-
----
-
-- LTC: `LPV7EqTdEYjnFsBwaCtKuAB2XajMgxEh82`
-- USDT (BEP20): `0x4603b2b4e2f2a699cb7a65f6f564bbd5b91970cd`
-- USDT (TRC20): `TGMQjS7HHwXTtLdpgYdHc2GZZGEcGLrhca`
-
----
+Your support is greatly appreciated and will help ensure all of the projects continued development and improvement. Thank you for being a part of the community!
+You can send me money on Revolut by following this link: https://revolut.me/mnestorovv
 
 ## Overview
 
 **RegExpert - Generate & Understand Regular Expressions** is designed to help developers easily generate and understand regular expressions for various use cases.
 
 Select a pattern type, country, and programming language to see the corresponding regular expression and code example. You can also view a detailed explanation of how the regex works and export or copy the code for your project.
+
+## Changelog
+
+For a detailed list of changes and updates made to this project, please refer to our [Changelog](./CHANGELOG.md).
+
+## Screenshots
+
+![RegExpert Screenshot](screenshots/screenshot.png)
 
 ## Support The Project
 
@@ -34,23 +35,8 @@ If you find this script helpful and would like to support its development and ma
 
 - **_Donate_**: Show your appreciation with a small donation. Your support will help me maintain and enhance the script. Every little bit helps, and your donation will make a big difference in my ability to keep this project alive and thriving.
 
----
-
-- LTC: `LPV7EqTdEYjnFsBwaCtKuAB2XajMgxEh82`
-- USDT (BEP20): `0x4603b2b4e2f2a699cb7a65f6f564bbd5b91970cd`
-- USDT (TRC20): `TGMQjS7HHwXTtLdpgYdHc2GZZGEcGLrhca`
-
----
-
-Your support is greatly appreciated and will help ensure the project's continued development and improvement. Thank you for being a part of the community
-
-## Changelog
-
-For a detailed list of changes and updates made to this project, please refer to our [Changelog](./CHANGELOG.md).
-
-## Screenshots
-
-![RegExpert Screenshot](screenshots/screenshot.png)
+Your support is greatly appreciated and will help ensure all of the projects continued development and improvement. Thank you for being a part of the community!
+You can send me money on Revolut by following this link: https://revolut.me/mnestorovv
 
 ---
 
